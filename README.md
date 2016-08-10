@@ -1,2 +1,3 @@
 # shlink-web-client
-An Angular JS client application for shlinkio/shlink
+
+An AngularJS-powered client application for shlinkio/shlink

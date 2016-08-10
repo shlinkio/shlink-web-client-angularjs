@@ -1,0 +1,26 @@
+{
+    "name": "shlink-web-client",
+    "version": "1.0.0",
+    "description": "An Angular JS client application for shlinkio/shlink",
+    "main": "Gruntfile.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+          "type": "git",
+          "url": "git+https://github.com/shlinkio/shlink-web-client.git"
+    },
+    "keywords": [
+          "url-shortener",
+          "shlink"
+    ],
+    "author": "Alejandro Celaya <alejandro@alejandrocelaya.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/shlinkio/shlink-web-client/issues"
+    },
+    "homepage": "https://shlink.io"
+}

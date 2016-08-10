@@ -1,0 +1,25 @@
+{
+  "name": "shlink-web-client",
+  "homepage": "https://shlink.io",
+  "authors": [
+    "Alejandro Celaya <alejandro@alejandrocelaya.com>"
+  ],
+  "description": "An AngularJS-powered web client for Shlink",
+  "main": "app/js/app.js",
+  "moduleType": [],
+  "keywords": [
+    "url-shortener",
+    "shlink"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.8"
+  }
+}

@@ -1,12 +1,12 @@
 module.exports = function (grunt) {
 
     // Get command line arguments
-    var cssFile = grunt.option('css-file') || 'public/css/main.min.css',
-        jsFile = grunt.option('js-file') || 'public/js/main.min.js',
+    var cssFile = grunt.option('css-file') || 'app/css/main.min.css',
+        jsFile = grunt.option('js-file') || 'app/js/main.min.js',
         cssFilesTemplate = {},
         jsFilesTemplate = {};
 
-    cssFilesTemplate[cssFile]   = 'public/sass/main.min.scss';
+    cssFilesTemplate[cssFile]   = 'app/sass/main.scss';
     jsFilesTemplate[jsFile]     = [
         'public/js/jquery.min.js',
         'public/js/bootstrap.min.js',
@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     compass: true,
                     sourcemap: 'none'
                 },
-                files: 'public/sass/main.scss'
+                files: cssFilesTemplate
             }
         }
         // ,

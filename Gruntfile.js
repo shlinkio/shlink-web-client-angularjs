@@ -6,15 +6,9 @@ module.exports = function (grunt) {
         cssFilesTemplate = {},
         jsFilesTemplate = {};
 
-    cssFilesTemplate[cssFile]   = 'app/sass/main.scss';
-    jsFilesTemplate[jsFile]     = [
-        'public/js/jquery.min.js',
-        'public/js/bootstrap.min.js',
-        'public/js/jquery.knob.js',
-        'public/js/main.js',
-        'public/js/contact.js',
-        'public/js/guiUtils.js',
-        'public/js/skills.js'
+    cssFilesTemplate[cssFile] = 'app/sass/main.scss';
+    jsFilesTemplate[jsFile] = [
+        'bower_components/angular'
     ];
 
     // Project configuration.
@@ -22,6 +16,18 @@ module.exports = function (grunt) {
 
         // Load configuration
         pkg: grunt.file.readJSON('package.json'),
+
+        // Inspect javascript code
+        jshint: {
+            dashboard: {
+                src: [
+                    'app/js/*.js'
+                ],
+                options: {
+                    jshintrc: '.jshintrc'
+                }
+            }
+        },
 
         // Compile SASS files
         sass: {
@@ -78,6 +84,7 @@ module.exports = function (grunt) {
     });
 
     // Load the plugins
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-sass');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
     // grunt.loadNpmTasks('grunt-contrib-concat');

@@ -17,31 +17,6 @@ module.exports = function (grunt) {
         // Load configuration
         pkg: grunt.file.readJSON('package.json'),
 
-        // Inspect javascript code
-        jshint: {
-            dashboard: {
-                src: [
-                    'app/js/*.js'
-                ],
-                options: {
-                    jshintrc: '.jshintrc'
-                }
-            }
-        },
-
-        // Compile SASS files
-        sass: {
-            minified: {
-                options: {
-                    style: 'compressed',
-                    compass: true,
-                    sourcemap: 'none'
-                },
-                files: cssFilesTemplate
-            }
-        }
-        // ,
-        //
         // // Minify app JS files into one file dropping console object
         // uglify: {
         //     options: {
@@ -79,13 +54,43 @@ module.exports = function (grunt) {
         //             'templates/partials/stylesheets.html.twig': ['templates/partials/stylesheets.html.twig']
         //         }
         //     }
-        // }
+        // },
+
+        // Inspect javascript code
+        jshint: {
+            dashboard: {
+                src: [
+                    'app/js/*.js'
+                ],
+                options: {
+                    jshintrc: '.jshintrc'
+                }
+            }
+        },
+
+        watch: {
+            files: 'app/sass/*.scss',
+            tasks: ['sass']
+        },
+
+        // Compile SASS files
+        sass: {
+            minified: {
+                options: {
+                    style: 'compressed',
+                    compass: true,
+                    sourcemap: 'none'
+                },
+                files: cssFilesTemplate
+            }
+        }
 
     });
 
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-contrib-uglify');
     // grunt.loadNpmTasks('grunt-contrib-concat');
     // grunt.loadNpmTasks('grunt-processhtml');

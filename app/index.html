@@ -13,6 +13,10 @@
     <body>
         <header ng-include="'/templates/partials/nav.html'"></header>
 
+        <div id="main" class="container-fluid">
+            <ui-view></ui-view>
+        </div>
+
         <!-- build:js /js/main.min.js?v -->
         <script src="/bower_components/angular/angular.min.js"></script>
         <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>

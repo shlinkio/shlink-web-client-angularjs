@@ -1,5 +1,7 @@
 'use strict';
 
-(function () {
-    var app = angular('shlink', ['angular-ui-router']);
-})();
+angular
+    .module('shlink', ['ui.router'])
+    .config(['$stateProvider', function ($stateProvider) {
+
+    }]);

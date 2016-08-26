@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./app -a localhost -p 8000 -c-1"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "grunt": "^1.0",
     "grunt-contrib-jshint": "^1.0",
     "grunt-contrib-sass": "^1.0",
-    "grunt-contrib-watch": "^1.0"
+    "grunt-contrib-watch": "^1.0",
+    "http-server": "^0.9"
   }
 }

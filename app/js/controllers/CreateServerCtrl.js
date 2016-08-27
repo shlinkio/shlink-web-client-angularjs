@@ -6,12 +6,12 @@
         .module('shlink')
         .controller('CreateServerCtrl', [
             'ServerService',
-            '$location',
+            '$state',
             'localStorageService',
             CreateServerCtrl
         ]);
 
-    function CreateServerCtrl (ServerService, $location, localStorageService) {
+    function CreateServerCtrl (ServerService, $state, localStorageService) {
         var vm = this;
 
         vm.saveNewServer = saveNewServer;
@@ -24,7 +24,7 @@
             localStorageService.set('current_server', server);
             localStorageService.set('token', null);
 
-            $location.path('/server/manage/' + server.id);
+            $state.go('server', {serverId: server.id});
         }
     }
 })();

@@ -13,7 +13,8 @@
     function ServerService (localStorageService, UuidGenerator) {
         return {
             createFromForm: createFromForm,
-            list: list
+            list: list,
+            getById: getById
         };
 
         /**
@@ -37,8 +38,23 @@
             return newServer;
         }
 
+        /**
+         *
+         * @returns {{}}
+         */
         function list () {
             return localStorageService.get('servers') || {};
+        }
+
+        /**
+         *
+         * @param serverId
+         * @returns {null}
+         */
+        function getById (serverId) {
+            var servers = list();
+
+            return typeof servers[serverId] !== 'undefined' ? servers[serverId] : null;
         }
     }
 })();

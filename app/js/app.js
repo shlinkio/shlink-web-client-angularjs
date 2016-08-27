@@ -39,8 +39,25 @@ angular
             .setPrefix('shlink')
             .setStorageType('localStorage');
     }])
-    .run(['$rootScope', function ($rootScope) {
-        $rootScope.$on('$stateChangeSuccess', function () {
-            $('html, body').scrollTop(0);
-        });
-    }]);
+    .run([
+        '$rootScope',
+        'localStorageService',
+        'ServerService',
+        function ($rootScope, localStorageService, ServerService) {
+            // After changing the state, scroll to top
+            $rootScope.$on('$stateChangeSuccess', function () {
+                $('html, body').scrollTop(0);
+            });
+
+            // Before changing the state, check the new server and set it as the default, un-setting the token in the
+            // process
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
+                var serverId = toParams.serverId || null;
+
+                if (serverId !== null) {
+                    localStorageService.set('current_server', ServerService.getById(serverId));
+                    localStorageService.set('token', null);
+                }
+            });
+        }
+    ]);

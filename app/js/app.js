@@ -1,8 +1,9 @@
 'use strict';
 
 angular
-    .module('shlink', ['ui.router'])
-    .config(['$stateProvider', function ($stateProvider) {
+    .module('shlink', ['ui.router', 'LocalStorageModule'])
+    .config(['$stateProvider', 'localStorageServiceProvider', function ($stateProvider, localStorageServiceProvider) {
+        // Define routes
         $stateProvider
             .state('main', {
                 url: '',
@@ -23,6 +24,11 @@ angular
                 url: '/server/manage/{serverId}',
                 templateUrl: '/templates/server-home.html'
             });
+
+        // Customize local storage
+        localStorageServiceProvider
+            .setPrefix('shlink')
+            .setStorageType('localStorage');
     }])
     .run(['$rootScope', function ($rootScope) {
         $rootScope.$on('$stateChangeSuccess', function () {

@@ -29,4 +29,9 @@ $brandColorDark: darken($brandColor, 7%);
         background-color: #f7f7f7;
         border-right: 1px solid #eee;
     }
+
+    .divider {
+        border-bottom: 1px solid #eee;
+        margin: 20px 0;
+    }
 }

@@ -7,11 +7,10 @@
         .controller('CreateServerCtrl', [
             'ServerService',
             '$state',
-            'localStorageService',
             CreateServerCtrl
         ]);
 
-    function CreateServerCtrl (ServerService, $state, localStorageService) {
+    function CreateServerCtrl (ServerService, $state) {
         var vm = this;
 
         vm.saveNewServer = saveNewServer;
@@ -22,9 +21,8 @@
 
             $form[0].reset();
             ServerService.setCurrent(server);
-            localStorageService.set('token', null);
 
-            $state.go('server', {serverId: server.id});
+            $state.go('server.list', {serverId: server.id});
         }
     }
 })();

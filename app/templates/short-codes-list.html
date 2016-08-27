@@ -34,10 +34,4 @@
         </tr>
     </tbody>
 </table>
-<div>
-    <ul class="pagination">
-        <li ng-repeat="n in [] | range:vm.shortUrls.pagination.pagesCount" ng-init="page = n + 1">
-            <a ui-sref="server.list.page({page: page})">{{page}}</a>
-        </li>
-    </ul>
-</div>
+<div pagination data-paginator="vm.shortUrls.pagination"></div>

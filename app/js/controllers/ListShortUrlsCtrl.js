@@ -6,18 +6,16 @@
         .module('shlink')
         .controller('ListShortUrlsCtrl', [
             'ApiService',
-            '$stateParams',
+            '$state',
             'ServerService',
             ListShortUrlsCtrl
         ]);
 
-    function ListShortUrlsCtrl (ApiService, $stateParams, ServerService) {
+    function ListShortUrlsCtrl (ApiService, $state, ServerService) {
         var vm = this,
-            page = $stateParams.page || 1;
+            page = $state.params.page || 1;
 
-        vm.shortUrls = {
-            data: []
-        };
+        vm.shortUrls = {};
         vm.currentServer = ServerService.getCurrent();
         ApiService.listShortUrls(page).then(function (data) {
             vm.shortUrls = data.shortUrls;

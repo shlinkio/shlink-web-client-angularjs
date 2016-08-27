@@ -22,6 +22,7 @@
 
             $form[0].reset();
             localStorageService.set('current_server', server);
+            localStorageService.set('token', null);
 
             $location.path('/server/manage/' + server.id);
         }

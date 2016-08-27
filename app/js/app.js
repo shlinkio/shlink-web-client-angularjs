@@ -23,6 +23,15 @@ angular
             .state('server', {
                 url: '/server/manage/{serverId}',
                 templateUrl: '/templates/server-home.html'
+            })
+            .state('server.list', {
+                url: '/list',
+                controller: 'ListShortUrlsCtrl',
+                templateUrl: '/templates/short-codes-list.html',
+                controllerAs: 'vm'
+            })
+            .state('server.list.page', {
+                url: '/{page:int}'
             });
 
         // Customize local storage

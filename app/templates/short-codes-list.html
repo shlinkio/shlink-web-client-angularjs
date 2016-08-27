@@ -1,0 +1,32 @@
+<h3 class="text-center">List of short URLs</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Short code</th>
+            <th>Original URL</th>
+            <th>Visits</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="shortUrl in vm.shortUrls.data">
+            <td>{{shortUrl.dateCreated}}</td>
+            <td>{{shortUrl.shortCode}}</td>
+            <td><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
+            <td>{{shortUrl.visitsCount}}</td>
+            <td>
+                <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank" class="btn btn-primary" title="Preview">
+                    <i class="fa fa-image"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <ul class="pagination">
+        <li ng-repeat="n in [] | range:vm.shortUrls.pagination.pagesCount" ng-init="page = n + 1">
+            <a ui-sref="server.list.page({page: page})">{{page}}</a>
+        </li>
+    </ul>
+</div>

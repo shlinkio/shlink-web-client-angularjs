@@ -40,9 +40,9 @@
             return performRequest('GET', '/rest/short-codes', undefined, params);
         }
 
-        function performRequest (method, url, data, params) {
+        function performRequest (method, url, data, params, originalDeferred) {
             var token = localStorageService.get('token'),
-                deferred = $q.defer(),
+                deferred = originalDeferred || $q.defer(),
                 callback = function (token) {
                     var currentServer = localStorageService.get('current_server'),
                         theData = data || {},
@@ -62,6 +62,14 @@
                         localStorageService.set('token', newToken.substr(7));
 
                         deferred.resolve(resp.data);
+                    }, function (resp) {
+                        if (resp.status !== 401 || resp.data.error !== 'INVALID_AUTH_TOKEN') {
+                            return;
+                        }
+
+                        // If the token is invalid, re-authenticate
+                        localStorageService.set('token', null);
+                        performRequest(method, url, data, params, deferred);
                     });
                 };
 

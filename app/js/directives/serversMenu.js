@@ -11,7 +11,7 @@
 
     function serversMenu (ServerService) {
         return {
-            templateUrl: '/templates/directives/serversMenu.html',
+            templateUrl: '/templates/directives/servers-menu.html',
             link: function (scope) {
                 scope.servers = ServerService.list();
                 scope.serversLength = Object.keys(scope.servers).length;

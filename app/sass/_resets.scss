@@ -1,5 +1,5 @@
 .navbar-inverse {
-    background-color: #4696e5;
+    background-color: $brandColor;
     border: none;
 
     .navbar-nav>li>a, .navbar-brand {
@@ -7,10 +7,20 @@
     }
 
     .navbar-nav>.open>a, .navbar-nav>.open>a:focus, .navbar-nav>.open>a:hover {
-        background-color: darken(#4696e5, 7%);
+        background-color: $brandColorDark;
     }
 }
 
 a {
     cursor: pointer;
+}
+
+.btn-primary {
+    background-color: $brandColor;
+    border-color: $brandColorDark;
+
+    &:active, &:focus, &:hover {
+        background-color: $brandColorDark;
+        border-color: darken($brandColorDark, 3%);
+    }
 }

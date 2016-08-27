@@ -1,1 +1,23 @@
-Create server
+<form class="form-horizontal" ng-submit="vm.saveNewServer()">
+    <div class="form-group">
+        <label for="inputName" class="col-lg-1 col-md-2 control-label">Name</label>
+        <div class="col-lg-11 col-md-10">
+            <input required type="text" class="form-control" id="inputName" placeholder="Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="url" class="col-lg-1 col-md-2 control-label">URL</label>
+        <div class="col-lg-11 col-md-10">
+            <input required type="url" class="form-control" id="url" placeholder="URL">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="apiKey" class="col-lg-1 col-md-2 control-label">API KEY</label>
+        <div class="col-lg-11 col-md-10">
+            <input required type="text" class="form-control" id="apiKey" placeholder="API KEY">
+        </div>
+    </div>
+    <div class="text-right">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

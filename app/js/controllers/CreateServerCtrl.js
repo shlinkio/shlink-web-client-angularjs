@@ -9,6 +9,12 @@
         ]);
 
     function CreateServerCtrl () {
+        var vm = this;
 
+        vm.saveNewServer = saveNewServer;
+
+        function saveNewServer () {
+
+        }
     }
 })();

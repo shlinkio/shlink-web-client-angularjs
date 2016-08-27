@@ -1,0 +1,47 @@
+#!/usr/bin/env php
+<?php
+if (count($argv) < 2) {
+    echo 'Usage:' . PHP_EOL;
+    echo sprintf('    %s directiveName [moduleName]', $argv[0]) . PHP_EOL;
+    exit(PHP_EOL);
+}
+
+$directive = $argv[1];
+$module = $argv[2] ?? 'shlink';
+
+// Change current dir to project root
+$gitRoot = exec('GIT_EDITOR=echo git config -e');
+$parts = explode('/', $gitRoot);
+array_pop($parts);
+$gitRoot = implode('/', $parts);
+chdir($gitRoot . '/..');
+
+// Read directive template
+$directiveTemplate = file_get_contents('scripts/templates/directive-template.txt');
+$content = str_replace('%directive%', $directive, $directiveTemplate);
+$content = str_replace('%module%', $module, $content);
+
+// Create directive file
+$directiveFile = sprintf('app/js/directives/%s.js', $directive);
+file_put_contents($directiveFile, $content);
+
+// Add directive to index.html
+$lines = explode(PHP_EOL, file_get_contents('app/index.html'));
+$length = count($lines);
+$lastLines = [
+    $lines[$length - 4],
+    $lines[$length - 3],
+    $lines[$length - 2],
+    $lines[$length - 1],
+];
+foreach ($lines as $i => $line) {
+    if ($i === $length - 4) {
+        $lines[$i] = sprintf('        <script src="/js/directives/%s.js"></script>', $directive);
+    } elseif ($i > $length - 4) {
+        unset($lines[$i]);
+    }
+}
+$lines = array_merge($lines, $lastLines);
+file_put_contents('app/index.html', implode(PHP_EOL, $lines));
+
+// TODO Add directive to Gruntfile

@@ -12,7 +12,8 @@
 
     function ServerService (localStorageService, UuidGenerator) {
         return {
-            createFromForm: createFromForm
+            createFromForm: createFromForm,
+            list: list
         };
 
         /**
@@ -34,6 +35,10 @@
             localStorageService.set('servers', servers);
 
             return newServer;
+        }
+
+        function list () {
+            return localStorageService.get('servers') || {};
         }
     }
 })();

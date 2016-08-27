@@ -7,18 +7,18 @@
         .controller('ListShortUrlsCtrl', [
             'ApiService',
             '$stateParams',
-            'localStorageService',
+            'ServerService',
             ListShortUrlsCtrl
         ]);
 
-    function ListShortUrlsCtrl (ApiService, $stateParams, localStorageService) {
+    function ListShortUrlsCtrl (ApiService, $stateParams, ServerService) {
         var vm = this,
             page = $stateParams.page || 1;
 
         vm.shortUrls = {
             data: []
         };
-        vm.currentServer = localStorageService.get('current_server');
+        vm.currentServer = ServerService.getCurrent();
         ApiService.listShortUrls(page).then(function (data) {
             vm.shortUrls = data.shortUrls;
         });

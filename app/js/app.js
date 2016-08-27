@@ -32,6 +32,12 @@ angular
             })
             .state('server.list.page', {
                 url: '/{page:int}'
+            })
+            .state('server.delete', {
+                url: '/delete',
+                templateUrl: '/templates/server-delete-confirm.html',
+                controller: 'DeleteServerCtrl',
+                controllerAs: 'vm'
             });
 
         // Customize local storage
@@ -51,12 +57,19 @@ angular
 
             // Before changing the state, check the new server and set it as the default, un-setting the token in the
             // process
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams, options) {
-                var serverId = toParams.serverId || null;
+            $rootScope.$on('$stateChangeStart', function (
+                event,
+                toState,
+                toParams /*,
+                fromState,
+                fromParams,
+                options */
+            ) {
+                var serverId = toParams.serverId || null,
+                    currentServer = ServerService.getCurrent();
 
-                if (serverId !== null) {
-                    localStorageService.set('current_server', ServerService.getById(serverId));
-                    localStorageService.set('token', null);
+                if (serverId !== null && currentServer !== null && currentServer.id !== serverId) {
+                    ServerService.setCurrent(serverId);
                 }
             });
         }

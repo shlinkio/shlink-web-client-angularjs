@@ -21,7 +21,7 @@
                 server = ServerService.createFromForm($form);
 
             $form[0].reset();
-            localStorageService.set('current_server', server);
+            ServerService.setCurrent(server);
             localStorageService.set('token', null);
 
             $state.go('server', {serverId: server.id});

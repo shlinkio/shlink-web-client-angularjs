@@ -60,7 +60,7 @@ module.exports = function (grunt) {
         jshint: {
             dashboard: {
                 src: [
-                    'app/js/*.js'
+                    'app/js/**/*.js'
                 ],
                 options: {
                     jshintrc: '.jshintrc'

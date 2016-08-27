@@ -23,6 +23,7 @@
     "angular": "angularjs#^1.5",
     "angular-ui-router": "^0.3",
     "bootstrap": "~3.3",
-    "fontawesome": "~4.6"
+    "fontawesome": "~4.6",
+    "jquery": "^3.1"
   }
 }

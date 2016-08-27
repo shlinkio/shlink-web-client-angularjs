@@ -6,12 +6,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><img src="/img/shlink-logo-white.png"> Shlink</a>
+            <a class="navbar-brand" ui-sref="main"><img src="/img/shlink-logo-white.png"> Shlink</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Add server</a></li>
-                <li><a href="#">Settings</a></li>
+                <li><a ui-sref="create-server"><i class="fa fa-plus"></i> Add server</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">Servers <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a ui-sref="server({serverId: 1})">https://acel.me</a></li>
+                        <li><a ui-sref="server({serverId: 2})">http://localhost:8000</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

@@ -1,4 +1,3 @@
-<h3 class="text-center">List of short URLs</h3>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -16,9 +15,21 @@
             <td><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
             <td>{{shortUrl.visitsCount}}</td>
             <td>
-                <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank" class="btn btn-primary" title="Preview">
-                    <i class="fa fa-image"></i>
-                </a>
+                <div class="btn-group">
+                    <button class="dropdown-toggle btn btn-default" data-toggle="dropdown">
+                        <i class="fa fa-gears"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
+                                <i class="fa fa-image"></i> Preview
+                            </a>
+                        </li>
+                        <li>
+                            <a ui-sref="short-code.visits({shortCode: shortUrl.shortCode})"><i class="fa fa-pie-chart"></i> Visits</a>
+                        </li>
+                    </ul>
+                </div>
             </td>
         </tr>
     </tbody>

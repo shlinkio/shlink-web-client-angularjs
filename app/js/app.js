@@ -38,6 +38,15 @@ angular
                 templateUrl: '/templates/server-delete-confirm.html',
                 controller: 'DeleteServerCtrl',
                 controllerAs: 'vm'
+            })
+
+            .state('short-code', {
+                url: '/short-code/{shortCode}',
+                templateUrl: '/templates/server-home.html'
+            })
+            .state('short-code.visits', {
+                url: '/visits',
+                templateUrl: '/templates/short-codes-visits.html'
             });
 
         // Customize local storage

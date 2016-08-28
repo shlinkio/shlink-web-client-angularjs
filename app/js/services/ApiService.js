@@ -41,8 +41,9 @@
             return performRequest('GET', '/rest/short-codes', undefined, params);
         }
 
-        function getVisits (shortCode) {
-
+        function getVisits (shortCode, dates) {
+            var params = dates || undefined;
+            return performRequest('GET', '/rest/short-codes/' + shortCode + '/visits', undefined, params);
         }
 
         function performRequest (method, url, data, params, originalDeferred) {

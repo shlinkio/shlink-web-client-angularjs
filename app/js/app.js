@@ -52,7 +52,8 @@ angular
                 })
                 .state('server.short-code.visits', {
                     url: '/visits',
-                    templateUrl: '/templates/short-codes-visits.html'
+                    templateUrl: '/templates/short-codes-visits.html',
+                    controller: 'VisitsCtrl as vm'
                 });
 
             // Customize local storage

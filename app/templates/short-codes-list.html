@@ -21,13 +21,13 @@
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li>
-                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
-                                <i class="fa fa-image"></i> Preview
+                            <a ui-sref="server.short-code.visits({shortCode: shortUrl.shortCode, shortUrl: shortUrl})">
+                                <i class="fa fa-pie-chart"></i>&nbsp;&nbsp;Visit stats
                             </a>
                         </li>
                         <li>
-                            <a ui-sref="server.short-code.visits({shortCode: shortUrl.shortCode})">
-                                <i class="fa fa-pie-chart"></i> Visits
+                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
+                                <i class="fa fa-image"></i>&nbsp;&nbsp;Preview
                             </a>
                         </li>
                     </ul>

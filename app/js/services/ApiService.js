@@ -15,6 +15,7 @@
         return {
             authenticate: authenticate,
             listShortUrls: listShortUrls,
+            getShortUrl: getSHortUrl,
             getVisits: getVisits
         };
 
@@ -39,6 +40,10 @@
         function listShortUrls (page) {
             var params = typeof page !== 'undefined' && page !== null ? {page: page} : undefined;
             return performRequest('GET', '/rest/short-codes', undefined, params);
+        }
+
+        function getSHortUrl (shortCode) {
+            return performRequest('GET', '/rest/short-codes/' + shortCode, undefined, params);
         }
 
         function getVisits (shortCode, dates) {

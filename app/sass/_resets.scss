@@ -24,3 +24,14 @@ a {
         border-color: darken($brandColorDark, 3%);
     }
 }
+
+.label {
+    padding: .2em .5em .2em;
+}
+.label-primary {
+    background-color: #4696e5;
+}
+
+.datepicker-dropdown {
+    z-index: 1040 !important;
+}

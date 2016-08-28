@@ -1,7 +1,36 @@
-<div class="well">
+<header class="well visit-stats-header">
+    <h2>
+        <span class="label label-primary pull-right">Visits: {{vm.visits.length}}</span>
+        Visit stats for <b>{{vm.shortUrl.shortCode}}</b>
+    </h2>
+    <hr>
+    <h4> Created at: <b>{{vm.shortUrl.dateCreated}}</b></h4>
+    <h4> Original URL: <a ng-href="{{vm.shortUrl.originalUrl}}" target="_blank">{{vm.shortUrl.originalUrl}}</a></h4>
+</header>
 
-</div>
+<section>
+    <form class="form-inline text-right">
+        <label>Period:</label>
+        <div class="input-group date">
+            <input class="form-control" id="intervalSince" placeholder="Since" ng-change="vm.changeDates()" ng-model="vm.startDate">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+        </div>
+        <div class="input-group date">
+            <input class="form-control" id="intervalUntil" placeholder="Until" ng-change="vm.changeDates()" ng-model="vm.endDate">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+        </div>
+    </form>
+</section>
 
-<ul>
-    <li ng-repeat="visit in vm.visits">Hi!</li>
-</ul>
+<section class="visits-stats-container">
+    <div class="row-fluid" ng-if="vm.visits.length == 0">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+            <div class="well text-center no-visits-disclaimer">
+                <h3>There has been no visits&nbsp;&nbsp;<span style="font-family: monospace;">:(</span></h3>
+            </div>
+        </div>
+    </div>
+    <ul ng-if="vm.visits.length > 0">
+        <li ng-repeat="visit in vm.visits">Hi!</li>
+    </ul>
+</section>

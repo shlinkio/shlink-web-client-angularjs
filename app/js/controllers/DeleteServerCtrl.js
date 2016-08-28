@@ -6,13 +6,13 @@
         .module('shlink')
         .controller('DeleteServerCtrl', [
             'ServerService',
-            '$stateParams',
             '$state',
+            '$rootScope',
             DeleteServerCtrl
         ]);
 
-    function DeleteServerCtrl (ServerService, $stateParams, $state) {
-        var serverId = $stateParams.serverId,
+    function DeleteServerCtrl (ServerService, $state, $rootScope) {
+        var serverId = $state.params.serverId,
             vm = this;
 
         vm.deleteServer = deleteServer;
@@ -21,6 +21,7 @@
         function deleteServer () {
             ServerService.deleteById(serverId);
             $state.go('main');
+            $rootScope.$broadcast('refresh_servers');
         }
     }
 })();

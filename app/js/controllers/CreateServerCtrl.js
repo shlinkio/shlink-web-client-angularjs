@@ -7,10 +7,11 @@
         .controller('CreateServerCtrl', [
             'ServerService',
             '$state',
+            '$rootScope',
             CreateServerCtrl
         ]);
 
-    function CreateServerCtrl (ServerService, $state) {
+    function CreateServerCtrl (ServerService, $state, $rootScope) {
         var vm = this;
 
         vm.saveNewServer = saveNewServer;
@@ -21,6 +22,7 @@
 
             $form[0].reset();
             ServerService.setCurrent(server);
+            $rootScope.$broadcast('refresh_servers');
 
             $state.go('server.list', {serverId: server.id});
         }

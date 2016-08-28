@@ -2,58 +2,65 @@
 
 angular
     .module('shlink', ['ui.router', 'LocalStorageModule'])
-    .config(['$stateProvider', 'localStorageServiceProvider', function ($stateProvider, localStorageServiceProvider) {
-        // Define routes
-        $stateProvider
-            .state('main', {
-                url: '',
-                templateUrl: '/templates/main.html'
-            })
-            .state('main.2', {
-                url: '/'
-            })
+    .config([
+        '$stateProvider',
+        'localStorageServiceProvider',
+        '$locationProvider',
+        function ($stateProvider, localStorageServiceProvider, $locationProvider) {
+            $locationProvider.html5Mode(true);
 
-            .state('create-server', {
-                url: '/server/create',
-                controller: 'CreateServerCtrl',
-                templateUrl: '/templates/server-create.html',
-                controllerAs: 'vm'
-            })
+            // Define routes
+            $stateProvider
+                .state('main', {
+                    url: '',
+                    templateUrl: '/templates/main.html'
+                })
+                .state('main.2', {
+                    url: '/'
+                })
 
-            .state('server', {
-                url: '/server/manage/{serverId}',
-                templateUrl: '/templates/server-home.html'
-            })
-            .state('server.list', {
-                url: '/list',
-                controller: 'ListShortUrlsCtrl',
-                templateUrl: '/templates/short-codes-list.html',
-                controllerAs: 'vm'
-            })
-            .state('server.list.page', {
-                url: '/{page:int}'
-            })
-            .state('server.delete', {
-                url: '/delete',
-                templateUrl: '/templates/server-delete-confirm.html',
-                controller: 'DeleteServerCtrl',
-                controllerAs: 'vm'
-            })
+                .state('create-server', {
+                    url: '/server/create',
+                    controller: 'CreateServerCtrl',
+                    templateUrl: '/templates/server-create.html',
+                    controllerAs: 'vm'
+                })
 
-            .state('short-code', {
-                url: '/short-code/{shortCode}',
-                templateUrl: '/templates/server-home.html'
-            })
-            .state('short-code.visits', {
-                url: '/visits',
-                templateUrl: '/templates/short-codes-visits.html'
-            });
+                .state('server', {
+                    url: '/server/manage/{serverId}',
+                    templateUrl: '/templates/server-home.html'
+                })
+                .state('server.list', {
+                    url: '/list',
+                    controller: 'ListShortUrlsCtrl',
+                    templateUrl: '/templates/short-codes-list.html',
+                    controllerAs: 'vm'
+                })
+                .state('server.list.page', {
+                    url: '/{page:int}'
+                })
+                .state('server.delete', {
+                    url: '/delete',
+                    templateUrl: '/templates/server-delete-confirm.html',
+                    controller: 'DeleteServerCtrl',
+                    controllerAs: 'vm'
+                })
 
-        // Customize local storage
-        localStorageServiceProvider
-            .setPrefix('shlink')
-            .setStorageType('localStorage');
-    }])
+                .state('short-code', {
+                    url: '/short-code/{shortCode}',
+                    templateUrl: '/templates/server-home.html'
+                })
+                .state('short-code.visits', {
+                    url: '/visits',
+                    templateUrl: '/templates/short-codes-visits.html'
+                });
+
+            // Customize local storage
+            localStorageServiceProvider
+                .setPrefix('shlink')
+                .setStorageType('localStorage');
+        }
+    ])
     .run([
         '$rootScope',
         'localStorageService',

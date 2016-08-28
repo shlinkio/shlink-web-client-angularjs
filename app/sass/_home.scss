@@ -3,3 +3,12 @@
         margin-top: 100px;
     }
 }
+
+.options {
+    visibility: hidden;
+    padding: 1px 10px;
+
+    &.visible {
+        visibility: visible;
+    }
+}

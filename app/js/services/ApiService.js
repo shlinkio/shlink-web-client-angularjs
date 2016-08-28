@@ -14,7 +14,8 @@
     function ApiService (localStorageService, $http, $q) {
         return {
             authenticate: authenticate,
-            listShortUrls: listShortUrls
+            listShortUrls: listShortUrls,
+            getVisits: getVisits
         };
 
         function authenticate () {
@@ -38,6 +39,10 @@
         function listShortUrls (page) {
             var params = typeof page !== 'undefined' && page !== null ? {page: page} : undefined;
             return performRequest('GET', '/rest/short-codes', undefined, params);
+        }
+
+        function getVisits (shortCode) {
+
         }
 
         function performRequest (method, url, data, params, originalDeferred) {

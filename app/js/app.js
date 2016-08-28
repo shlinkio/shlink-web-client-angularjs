@@ -27,7 +27,7 @@ angular
                 })
 
                 .state('server', {
-                    url: '/server/manage/{serverId}',
+                    url: '/server/{serverId}',
                     templateUrl: '/templates/server-home.html'
                 })
                 .state('server.list', {
@@ -46,11 +46,11 @@ angular
                     controllerAs: 'vm'
                 })
 
-                .state('short-code', {
+                .state('server.short-code', {
                     url: '/short-code/{shortCode}',
-                    templateUrl: '/templates/server-home.html'
+                    template: '<ui-view></ui-view>'
                 })
-                .state('short-code.visits', {
+                .state('server.short-code.visits', {
                     url: '/visits',
                     templateUrl: '/templates/short-codes-visits.html'
                 });

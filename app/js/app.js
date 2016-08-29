@@ -31,18 +31,24 @@ angular
                     templateUrl: '/templates/server-home.html'
                 })
                 .state('server.list', {
-                    url: '/list',
+                    url: '/list-short-urls/{page:int}',
                     controller: 'ListShortUrlsCtrl',
                     templateUrl: '/templates/short-codes-list.html',
-                    controllerAs: 'vm'
-                })
-                .state('server.list.page', {
-                    url: '/{page:int}'
+                    controllerAs: 'vm',
+                    params: {
+                        page: 1
+                    }
                 })
                 .state('server.delete', {
                     url: '/delete',
                     templateUrl: '/templates/server-delete-confirm.html',
                     controller: 'DeleteServerCtrl',
+                    controllerAs: 'vm'
+                })
+                .state('server.create', {
+                    url: '/create-short-url',
+                    controller: 'CreateShortUrlsCtrl',
+                    templateUrl: '/templates/short-codes-create.html',
                     controllerAs: 'vm'
                 })
 

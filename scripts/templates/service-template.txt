@@ -1,0 +1,16 @@
+
+(function () {
+    'use strict';
+
+    angular
+        .module('%module%')
+        .factory('%service%', [
+            %service%
+        ]);
+
+    function %service% () {
+        return {
+
+        };
+    }
+})();

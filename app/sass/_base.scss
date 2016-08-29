@@ -1,4 +1,14 @@
+$brandColor: #4696e5;
+$brandColorDark: darken($brandColor, 7%);
 
 * {
     outline: none !important;
+}
+
+#main {
+    padding-top: 50px;
+
+    @media (min-width: 993px) {
+        padding: 90px 40px 40px;
+    }
 }

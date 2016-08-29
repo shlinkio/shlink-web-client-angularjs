@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./app -a localhost -p 8000 -c-1"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,18 @@
   },
   "homepage": "https://shlink.io",
   "devDependencies": {
-    "grunt": "^1.0.1",
-    "grunt-contrib-sass": "^1.0.0"
+    "http-server": "^0.9",
+    "grunt": "^1.0",
+    "grunt-contrib-jshint": "^1.0",
+    "grunt-contrib-sass": "^1.0",
+    "grunt-contrib-watch": "^1.0",
+    "grunt-contrib-concat": "^1.0",
+    "grunt-contrib-uglify": "^1.0",
+    "grunt-processhtml": "^0.4",
+    "grunt-string-replace": "^1.0",
+    "grunt-contrib-copy": "~1.0"
+  },
+  "dependencies": {
+    "angular-chart.js": "^1.0"
   }
 }

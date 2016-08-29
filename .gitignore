@@ -2,3 +2,5 @@
 app/bower_components
 node_modules
 .sass-cache
+app/js/main.min.js
+app/fonts

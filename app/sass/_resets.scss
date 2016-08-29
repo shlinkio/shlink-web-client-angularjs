@@ -1,0 +1,37 @@
+.navbar-inverse {
+    background-color: $brandColor;
+    border: none;
+
+    .navbar-nav>li>a, .navbar-brand {
+        color: #d0e4f8;
+    }
+
+    .navbar-nav>.open>a, .navbar-nav>.open>a:focus, .navbar-nav>.open>a:hover {
+        background-color: $brandColorDark;
+    }
+}
+
+a {
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: $brandColor;
+    border-color: $brandColorDark;
+
+    &:active, &:focus, &:hover {
+        background-color: $brandColorDark;
+        border-color: darken($brandColorDark, 3%);
+    }
+}
+
+.label {
+    padding: .2em .5em .2em;
+}
+.label-primary {
+    background-color: #4696e5;
+}
+
+.datepicker-dropdown {
+    z-index: 1040 !important;
+}

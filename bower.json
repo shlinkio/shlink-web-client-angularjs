@@ -20,7 +20,13 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "angularjs#^1.5.8",
-    "angular-ui-router": "^0.3.1"
+    "angular": "angularjs#^1.5",
+    "angular-ui-router": "^0.3",
+    "bootstrap": "~3.3",
+    "fontawesome": "~4.6",
+    "jquery": "^3.1",
+    "angular-local-storage": "~0.4",
+    "bootstrap-3-datepicker": "~1.6",
+    "angular-moment": "^1.0"
   }
 }

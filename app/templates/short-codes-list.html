@@ -1,0 +1,39 @@
+<table class="table table-striped table-hover short-urls-list">
+    <thead>
+        <tr>
+            <th>Created at</th>
+            <th>Short code</th>
+            <th>Original URL</th>
+            <th>Visits</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="shortUrl in vm.shortUrls.data">
+            <td>{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
+            <td>{{shortUrl.shortCode}}</td>
+            <td><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
+            <td>{{shortUrl.visitsCount}}</td>
+            <td>
+                <div class="btn-group">
+                    <button class="dropdown-toggle btn btn-default options" data-toggle="dropdown">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a ui-sref="server.short-code.visits({shortCode: shortUrl.shortCode, shortUrl: shortUrl})">
+                                <i class="fa fa-pie-chart"></i>&nbsp;&nbsp;Visit stats
+                            </a>
+                        </li>
+                        <li>
+                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
+                                <i class="fa fa-image"></i>&nbsp;&nbsp;Preview
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div pagination data-paginator="vm.shortUrls.pagination"></div>

@@ -1,0 +1,19 @@
+
+(function () {
+    'use strict';
+
+    angular
+        .module('%module%')
+        .directive('%directive%', [
+            %directive%
+        ]);
+
+    function %directive% () {
+        return {
+            templateUrl: '',
+            link: function (scope, element) {
+
+            }
+        };
+    }
+})();

@@ -4,7 +4,8 @@ module.exports = function (grunt) {
     var cssFile = grunt.option('css-file') || 'app/css/main.min.css',
         jsFile = grunt.option('js-file') || 'app/js/main.min.js',
         cssFilesTemplate = {},
-        jsFilesTemplate = {};
+        jsFilesTemplate = {},
+        currentTimestamp = new Date().getTime();
 
     cssFilesTemplate[cssFile] = 'app/sass/main.scss';
     jsFilesTemplate[jsFile] = [
@@ -98,6 +99,20 @@ module.exports = function (grunt) {
                     'app/index.html': ['app/index.html']
                 }
             }
+        },
+
+        'string-replace': {
+            main: {
+                options: {
+                    replacements: [{
+                        pattern: /(.js|.css)\?v/ig,
+                        replacement: '$1?v=' + currentTimestamp
+                    }]
+                },
+                files : {
+                    'app/index.html': ['app/index.html']
+                }
+            }
         }
 
     });
@@ -109,8 +124,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-string-replace');
 
     // Default task.
-    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml', 'string-replace']);
 
 };

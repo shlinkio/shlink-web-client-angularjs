@@ -25,6 +25,7 @@
   },
   "homepage": "https://shlink.io",
   "devDependencies": {
+    "http-server": "^0.9",
     "grunt": "^1.0",
     "grunt-contrib-jshint": "^1.0",
     "grunt-contrib-sass": "^1.0",
@@ -32,7 +33,7 @@
     "grunt-contrib-concat": "^1.0",
     "grunt-contrib-uglify": "^1.0",
     "grunt-processhtml": "^0.4",
-    "http-server": "^0.9"
+    "grunt-string-replace": "^1.0"
   },
   "dependencies": {
     "angular-chart.js": "^1.0"

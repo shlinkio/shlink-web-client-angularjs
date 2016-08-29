@@ -47,7 +47,7 @@ angular
                 })
                 .state('server.create', {
                     url: '/create-short-url',
-                    controller: 'CreateShortUrlsCtrl',
+                    controller: 'CreateShortUrlCtrl',
                     templateUrl: '/templates/short-codes-create.html',
                     controllerAs: 'vm'
                 })

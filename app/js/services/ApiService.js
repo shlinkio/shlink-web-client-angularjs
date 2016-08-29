@@ -15,8 +15,9 @@
         return {
             authenticate: authenticate,
             listShortUrls: listShortUrls,
-            getShortUrl: getSHortUrl,
-            getVisits: getVisits
+            getShortUrl: getShortUrl,
+            getVisits: getVisits,
+            createShortUrl: createShortUrl
         };
 
         function authenticate () {
@@ -42,7 +43,7 @@
             return performRequest('GET', '/rest/short-codes', undefined, params);
         }
 
-        function getSHortUrl (shortCode) {
+        function getShortUrl (shortCode) {
             return performRequest('GET', '/rest/short-codes/' + shortCode, undefined, params);
         }
 
@@ -51,22 +52,31 @@
             return performRequest('GET', '/rest/short-codes/' + shortCode + '/visits', undefined, params);
         }
 
+        function createShortUrl (url) {
+            return performRequest('POST', '/rest/short-codes', 'longUrl=' + url);
+        }
+
         function performRequest (method, url, data, params, originalDeferred) {
             var token = localStorageService.get('token'),
                 deferred = originalDeferred || $q.defer(),
                 callback = function (token) {
                     var currentServer = localStorageService.get('current_server'),
                         theData = data || {},
-                        theParams = params || {};
+                        theParams = params || {},
+                        headers = {
+                            Authorization: 'Bearer ' + token
+                        };
+
+                    if (method === 'POST' && typeof data !== 'undefined' && data !== null) {
+                        headers['Content-Type'] = 'application/x-www-form-urlencoded';
+                    }
 
                     $http({
                         method: method,
                         url: currentServer.url + url,
                         data: theData,
                         params: theParams,
-                        headers: {
-                            Authorization: 'Bearer ' + token
-                        }
+                        headers: headers
                     }).then(function (resp) {
                         // Override token
                         var newToken = resp.headers('Authorization');
@@ -74,12 +84,15 @@
 
                         deferred.resolve(resp.data);
                     }, function (resp) {
+                        // If this is not a "invalid token" response, just reject the promise and let the callee
+                        // decide what to do
                         if (resp.status !== 401 || resp.data.error !== 'INVALID_AUTH_TOKEN') {
+                            deferred.reject(resp);
                             return;
                         }
 
                         // If the token is invalid, re-authenticate
-                        localStorageService.set('token', null);
+                        localStorageService.remove('token');
                         performRequest(method, url, data, params, deferred);
                     });
                 };

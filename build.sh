@@ -4,6 +4,7 @@ set -e
 # Install node modules
 rm -rf node_modules
 npm install
+grunt
 
 # Copy app directory and remove non-production stuff
 cp -r app dist
@@ -23,3 +24,5 @@ cd dist/app
 zip -ry ../shlink-web-client.zip .
 cd ../..
 rm -rf dist/app
+
+git checkout -- app/index.html

@@ -26,6 +26,7 @@
     "fontawesome": "~4.6",
     "jquery": "^3.1",
     "angular-local-storage": "~0.4",
-    "bootstrap-3-datepicker": "~1.6"
+    "bootstrap-3-datepicker": "~1.6",
+    "angular-moment": "^1.0"
   }
 }

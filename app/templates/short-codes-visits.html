@@ -8,7 +8,7 @@
         </a>
     </h2>
     <hr>
-    <h4> Created at: <b>{{vm.shortUrl.dateCreated}}</b></h4>
+    <h4> Created: <b am-time-ago="vm.shortUrl.dateCreated" title="{{vm.shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}"></b></h4>
     <h4> Original URL: <a ng-href="{{vm.shortUrl.originalUrl}}" target="_blank">{{vm.shortUrl.originalUrl}}</a></h4>
 </header>
 

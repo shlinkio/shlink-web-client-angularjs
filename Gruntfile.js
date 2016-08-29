@@ -77,8 +77,8 @@ module.exports = function (grunt) {
             },
             css: {
                 src: [
-                    'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
                     'app/bower_components/fontawesome/css/font-awesome.min.css',
+                    'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
                     'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
                     cssFile
                 ],

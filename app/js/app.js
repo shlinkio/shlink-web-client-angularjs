@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('shlink', ['ui.router', 'LocalStorageModule'])
+    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js'])
     .config([
         '$stateProvider',
         'localStorageServiceProvider',

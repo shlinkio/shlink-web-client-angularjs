@@ -11,4 +11,8 @@
     &.visible {
         visibility: visible;
     }
+
+    @media (max-width: 992px) {
+        visibility: visible;
+    }
 }

@@ -22,7 +22,13 @@
 }
 
 .nav-sidebar {
-    margin-top: 20px;
+    @media (min-width: 993px) {
+        margin-top: 20px;
+    }
+    @media (max-width: 992px) {
+        padding-top: 20px;
+        margin-bottom: 20px;
+    }
 
     > .active > a, > .active > a:hover, > .active > a:focus {
         color: #fff;

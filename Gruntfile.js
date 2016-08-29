@@ -39,18 +39,6 @@ module.exports = function (grunt) {
         // Load configuration
         pkg: grunt.file.readJSON('package.json'),
 
-        // processhtml: {
-        //     options: {
-        //         // Task-specific options go here.
-        //     },
-        //     main: {
-        //         files: {
-        //             'templates/partials/javascripts.html.twig': ['templates/partials/javascripts.html.twig'],
-        //             'templates/partials/stylesheets.html.twig': ['templates/partials/stylesheets.html.twig']
-        //         }
-        //     }
-        // },
-
         jshint: {
             dashboard: {
                 src: [
@@ -102,6 +90,14 @@ module.exports = function (grunt) {
             main: {
                 files: jsFilesTemplate
             }
+        },
+
+        processhtml: {
+            main: {
+                files: {
+                    'app/index.html': ['app/index.html']
+                }
+            }
         }
 
     });
@@ -112,9 +108,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    // grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     // Default task.
-    grunt.registerTask('default', ['sass', 'concat', 'uglify'/*, 'processhtml'**/]);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml']);
 
 };

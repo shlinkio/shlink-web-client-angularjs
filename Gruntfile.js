@@ -113,6 +113,17 @@ module.exports = function (grunt) {
                     'app/index.html': ['app/index.html']
                 }
             }
+        },
+
+        copy: {
+            main: {
+                files: [{
+                    expand: true,
+                    cwd: 'app/bower_components/fontawesome/fonts/',
+                    src: '**',
+                    dest: 'app/fonts/'
+                }]
+            }
         }
 
     });
@@ -125,8 +136,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-string-replace');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task.
-    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml', 'string-replace']);
+    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml', 'string-replace', 'copy']);
 
 };

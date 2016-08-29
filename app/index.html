@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="shlink">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/">
+
+        <!-- build:css /css/main.min.css?v -->
+        <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" href="/css/main.min.css">
+        <!-- /build -->
+    </head>
+    <body>
+        <header ng-include="'/templates/partials/nav.html'"></header>
+
+        <div id="main" class="container-fluid">
+            <ui-view></ui-view>
+        </div>
+
+        <!-- build:js /js/main.min.js?v -->
+        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="/bower_components/moment/min/moment.min.js"></script>
+        <script src="/bower_components/angular/angular.min.js"></script>
+        <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="/bower_components/angular-moment/angular-moment.min.js"></script>
+        <script src="/node_modules/chart.js/dist/Chart.min.js"></script>
+        <script src="/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script src="/js/app.js"></script>
+        <script src="/js/controllers/CreateServerCtrl.js"></script>
+        <script src="/js/services/ServerService.js"></script>
+        <script src="/js/services/UuidGenerator.js"></script>
+        <script src="/js/directives/serversMenu.js"></script>
+        <script src="/js/services/ApiService.js"></script>
+        <script src="/js/controllers/ListShortUrlsCtrl.js"></script>
+        <script src="/js/filters/rangeFilter.js"></script>
+        <script src="/js/controllers/DeleteServerCtrl.js"></script>
+        <script src="/js/directives/pagination.js"></script>
+        <script src="/js/controllers/VisitsCtrl.js"></script>
+        <script src="/js/services/StatsProcessor.js"></script>
+        <script src="/js/controllers/CreateShortUrlCtrl.js"></script>
+        <!-- /build -->
+    </body>
+</html>

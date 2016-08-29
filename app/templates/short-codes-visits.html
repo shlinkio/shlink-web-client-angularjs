@@ -1,0 +1,76 @@
+<header class="well visit-stats-header">
+    <h2>
+        <span class="label label-primary pull-right">Visits: {{vm.visitsCount}}</span>
+        Visit stats for
+        <a ng-init="shortLink = vm.currentServer.url + '/' + vm.shortUrl.shortCode"
+           ng-href="{{shortLink}}" target="_blank">
+            {{shortLink}}
+        </a>
+    </h2>
+    <hr>
+    <h4> Created: <b am-time-ago="vm.shortUrl.dateCreated" title="{{vm.shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}"></b></h4>
+    <h4> Original URL: <a ng-href="{{vm.shortUrl.originalUrl}}" target="_blank">{{vm.shortUrl.originalUrl}}</a></h4>
+</header>
+
+<section>
+    <form class="form-inline text-right">
+        <label>Period:</label>
+        <div class="input-group date">
+            <input class="form-control" id="intervalSince" placeholder="Since"
+                   ng-change="vm.changeDates()" ng-model="vm.startDate">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+        </div>
+        <div class="input-group date">
+            <input class="form-control" id="intervalUntil" placeholder="Until"
+                   ng-change="vm.changeDates()" ng-model="vm.endDate">
+            <div class="input-group-addon"><i class="fa fa-calendar"></i></div>
+        </div>
+    </form>
+</section>
+
+<section class="visits-stats-container">
+    <div class="row-fluid" ng-if="vm.visitsCount == 0">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+            <div class="well text-center no-visits-disclaimer">
+                <h3>There has been no visits&nbsp;&nbsp;<span style="font-family: monospace;">:(</span></h3>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="vm.visitsCount > 0">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Operating systems</div>
+                    <div class="panel-body">
+                        <canvas class="chart chart-doughnut" chart-data="vm.osStats.data" chart-labels="vm.osStats.labels" chart-options="vm.chartOptions"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Browsers</div>
+                    <div class="panel-body">
+                        <canvas class="chart chart-doughnut" chart-data="vm.browserStats.data" chart-labels="vm.browserStats.labels" chart-options="vm.chartOptions"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Referrers</div>
+                    <div class="panel-body">
+                        <canvas class="chart chart-horizontal-bar" ng-init="referrerData = [vm.referrerStats.data]" chart-data="referrerData" chart-labels="vm.referrerStats.labels"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Countries</div>
+                    <div class="panel-body">
+                        <canvas class="chart chart-horizontal-bar" ng-init="countriesData = [vm.countriesStats.data]" chart-data="countriesData" chart-labels="vm.countriesStats.labels"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

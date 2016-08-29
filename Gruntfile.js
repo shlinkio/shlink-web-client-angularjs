@@ -4,21 +4,12 @@ module.exports = function (grunt) {
     var cssFile = grunt.option('css-file') || 'app/css/main.min.css',
         jsFile = grunt.option('js-file') || 'app/js/main.min.js',
         cssFilesTemplate = {},
-        jsFilesTemplate = {},
+        jsUglifyTemplate = {},
+        jsConcatTemplate = {},
         currentTimestamp = new Date().getTime();
 
     cssFilesTemplate[cssFile] = 'app/sass/main.scss';
-    jsFilesTemplate[jsFile] = [
-        'app/bower_components/jquery/dist/jquery.min.js',
-        'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'app/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js',
-        'app/bower_components/moment/min/moment.min.js',
-        'app/bower_components/angular/angular.min.js',
-        'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-        'app/bower_components/angular-moment/angular-moment.min.js',
-        'node_modules/chart.js/dist/Chart.min.js',
-        'node_modules/angular-chart.js/dist/angular-chart.min.js',
+    jsUglifyTemplate[jsFile] = [
         'app/js/app.js',
         'app/js/controllers/CreateServerCtrl.js',
         'app/js/services/ServerService.js',
@@ -32,6 +23,19 @@ module.exports = function (grunt) {
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
         'app/js/controllers/CreateShortUrlCtrl.js'
+    ];
+    jsConcatTemplate[jsFile] = [
+        'app/bower_components/jquery/dist/jquery.min.js',
+        'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
+        'app/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js',
+        'app/bower_components/moment/min/moment.min.js',
+        'app/bower_components/angular/angular.min.js',
+        'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
+        'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
+        'app/bower_components/angular-moment/angular-moment.min.js',
+        'node_modules/chart.js/dist/Chart.min.js',
+        'node_modules/angular-chart.js/dist/angular-chart.min.js',
+        jsFile
     ];
 
     // Project configuration.
@@ -71,7 +75,7 @@ module.exports = function (grunt) {
             options: {
                 separator: ';\n'
             },
-            main: {
+            css: {
                 src: [
                     'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
                     'app/bower_components/fontawesome/css/font-awesome.min.css',
@@ -79,6 +83,9 @@ module.exports = function (grunt) {
                     cssFile
                 ],
                 dest: cssFile
+            },
+            js: {
+                files: jsConcatTemplate
             }
         },
 
@@ -89,7 +96,7 @@ module.exports = function (grunt) {
                 }
             },
             main: {
-                files: jsFilesTemplate
+                files: jsUglifyTemplate
             }
         },
 
@@ -139,6 +146,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     // Default task.
-    grunt.registerTask('default', ['sass', 'concat', 'uglify', 'processhtml', 'string-replace', 'copy']);
+    grunt.registerTask('default', ['sass', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
 
 };

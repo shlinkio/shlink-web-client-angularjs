@@ -69,5 +69,4 @@ foreach ($gruntfileLines as $index => $line) {
 }
 
 $prev[] = sprintf('        \'app/js/controllers/%s.js\'', $controller);
-
 file_put_contents('Gruntfile.js', implode(PHP_EOL, array_merge($prev, $next)));

@@ -1,7 +1,7 @@
 {
   "name": "shlink-web-client",
   "version": "1.0.0",
-  "description": "An Angular JS client application for shlinkio/shlink",
+  "description": "An Angular JS client application for Shlink",
   "main": "Gruntfile.js",
   "directories": {
     "test": "test"

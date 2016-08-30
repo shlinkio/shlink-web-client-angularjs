@@ -6,19 +6,24 @@
         .module('shlink')
         .controller('CreateShortUrlCtrl', [
             'ApiService',
-            '$state',
             CreateShortUrlCtrl
         ]);
 
-    function CreateShortUrlCtrl (ApiService, $state) {
+    function CreateShortUrlCtrl (ApiService) {
         var vm = this;
 
         vm.createShortCode = function () {
             var $form = $('#createShortCode'),
                 url = $form.find('[name=url]').val();
 
-            ApiService.createShortUrl(url).then(function () {
-                $state.go('server.list');
+            $form.find('.alert').remove();
+            ApiService.createShortUrl(url).then(function (data) {
+                $form.append(
+                    '<div class="alert alert-info alert-dismissable">' +
+                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+                        '<b>Great!</b> The short URL is <b>' + data.shortUrl + '</b>' +
+                    '</div>'
+                );
             }, function (resp) {
                 $form.append(
                     '<div class="alert alert-danger alert-dismissable">' +

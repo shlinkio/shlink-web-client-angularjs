@@ -4,7 +4,7 @@
   "authors": [
     "Alejandro Celaya <alejandro@alejandrocelaya.com>"
   ],
-  "description": "An AngularJS-powered web client for Shlink",
+  "description": "An Angular JS client application for Shlink",
   "main": "app/js/app.js",
   "moduleType": [],
   "keywords": [

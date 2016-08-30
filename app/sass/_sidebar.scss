@@ -26,12 +26,12 @@
         margin-top: 20px;
     }
     @media (max-width: 992px) {
-        padding-top: 20px;
+        padding: 20px 0;
         margin-bottom: 20px;
     }
 
     > .active > a, > .active > a:hover, > .active > a:focus {
         color: #fff;
-        background-color: #428bca;
+        background-color: #4696E5;
     }
 }

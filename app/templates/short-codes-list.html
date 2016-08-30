@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th>Created at</th>
-            <th>Short code</th>
+            <th>Short URL</th>
             <th>Original URL</th>
             <th>Visits</th>
             <th></th>
@@ -10,24 +10,30 @@
     </thead>
     <tbody>
         <tr ng-repeat="shortUrl in vm.shortUrls.data">
-            <td>{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
-            <td>{{shortUrl.shortCode}}</td>
-            <td><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
-            <td>{{shortUrl.visitsCount}}</td>
+            <td data-th="Created at: ">{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
+            <td data-th="Short URL: "><a target="_blank" ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}">{{vm.currentServer.url}}/{{shortUrl.shortCode}}</a></td>
+            <td data-th="Original URL: "><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
+            <td data-th="Visits: ">{{shortUrl.visitsCount}}</td>
             <td>
                 <div class="btn-group">
                     <button class="dropdown-toggle btn btn-default options" data-toggle="dropdown">
                         <i class="fa fa-ellipsis-v"></i>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-right">
+                    <ul class="dropdown-menu options-dropdown">
                         <li>
                             <a ui-sref="server.short-code.visits({shortCode: shortUrl.shortCode, shortUrl: shortUrl})">
                                 <i class="fa fa-pie-chart"></i>&nbsp;&nbsp;Visit stats
                             </a>
                         </li>
+                        <li class="divider"></li>
                         <li>
-                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
+                            <a href="#" ng-click="displayModalImage(vm.currentServer.url + '/' + shortUrl.shortCode + '/preview', 'Preview for ' + shortUrl.shortCode)">
                                 <i class="fa fa-image"></i>&nbsp;&nbsp;Preview
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" ng-click="displayModalImage(vm.currentServer.url + '/' + shortUrl.shortCode + '/qr-code', 'QR code for ' + shortUrl.shortCode)">
+                                <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR code
                             </a>
                         </li>
                     </ul>

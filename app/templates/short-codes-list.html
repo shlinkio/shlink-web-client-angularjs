@@ -25,13 +25,14 @@
                                 <i class="fa fa-pie-chart"></i>&nbsp;&nbsp;Visit stats
                             </a>
                         </li>
+                        <li class="divider"></li>
                         <li>
-                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/preview" target="_blank">
+                            <a href="#" ng-click="displayModalImage(vm.currentServer.url + '/' + shortUrl.shortCode + '/preview', 'Preview for ' + shortUrl.shortCode)">
                                 <i class="fa fa-image"></i>&nbsp;&nbsp;Preview
                             </a>
                         </li>
                         <li>
-                            <a ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}/qr-code" target="_blank">
+                            <a href="#" ng-click="displayModalImage(vm.currentServer.url + '/' + shortUrl.shortCode + '/qr-code', 'QR code for ' + shortUrl.shortCode)">
                                 <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR code
                             </a>
                         </li>

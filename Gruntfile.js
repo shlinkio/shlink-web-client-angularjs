@@ -22,7 +22,8 @@ module.exports = function (grunt) {
         'app/js/directives/pagination.js',
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
-        'app/js/controllers/CreateShortUrlCtrl.js'
+        'app/js/controllers/CreateShortUrlCtrl.js',
+        'app/js/directives/modalImage.js'
     ];
     jsConcatTemplate[jsFile] = [
         'app/bower_components/jquery/dist/jquery.min.js',

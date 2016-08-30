@@ -17,8 +17,44 @@
     }
 }
 
+.options-dropdown {
+    @media (min-width: 768px) {
+        right: 0;
+        left: auto;
+    }
+}
+
 .create-short-code-form {
     .alert {
         margin-top: 20px;
+    }
+}
+
+.short-urls-list {
+    td {
+        word-break: break-all;
+    }
+
+    @media (max-width: 767px) {
+        thead {
+            display: none;
+        }
+
+        tbody td {
+            display: block;
+            width: 100%;
+            position: relative;
+
+            &:before {
+                content: attr(data-th);
+                font-weight: bold;
+            }
+        }
+
+        tr {
+            display: block;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
     }
 }

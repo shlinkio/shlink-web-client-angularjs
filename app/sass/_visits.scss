@@ -3,6 +3,10 @@
     h2 {
         margin-top: 0;
     }
+
+    a {
+        word-break: break-all;
+    }
 }
 
 .visits-stats-container {
@@ -16,5 +20,19 @@
 
     h3 {
         margin: 0;
+    }
+}
+
+.dates-filter-container {
+    text-align: right;
+
+    @media (max-width: 767px) {
+        text-align: left;
+    }
+
+    .date {
+        @media (max-width: 767px) {
+            margin-bottom: 5px;
+        }
     }
 }

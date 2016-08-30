@@ -18,3 +18,17 @@
         margin: 0;
     }
 }
+
+.dates-filter-container {
+    text-align: right;
+
+    @media (max-width: 767px) {
+        text-align: left;
+    }
+
+    .date {
+        @media (max-width: 767px) {
+            margin-bottom: 5px;
+        }
+    }
+}

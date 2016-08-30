@@ -2,8 +2,13 @@
     background-color: $brandColor;
     border: none;
 
-    .navbar-nav>li>a, .navbar-brand, .navbar-nav .open .dropdown-menu>li>a {
+    .navbar-nav>li>a, .navbar-brand {
         color: #d0e4f8;
+    }
+    .navbar-nav .open .dropdown-menu>li>a {
+        @media (max-width: 768px) {
+            color: #d0e4f8;
+        }
     }
 
     .navbar-nav>.open>a, .navbar-nav>.open>a:focus, .navbar-nav>.open>a:hover {

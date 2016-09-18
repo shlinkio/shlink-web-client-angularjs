@@ -20,7 +20,9 @@
             var $form = $('#server-form'),
                 server = ServerService.createFromForm($form);
 
-            $form[0].reset();
+            if ($form.length > 0) {
+                $form[0].reset();
+            }
             ServerService.setCurrent(server);
             $rootScope.$broadcast('refresh_servers');
 

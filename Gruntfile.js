@@ -4,11 +4,18 @@ module.exports = function (grunt) {
     var cssFile = grunt.option('css-file') || 'app/css/main.min.css',
         jsFile = grunt.option('js-file') || 'app/js/main.min.js',
         cssFilesTemplate = {},
+        cssMinFilesTemplate = {},
         jsUglifyTemplate = {},
         jsConcatTemplate = {},
         currentTimestamp = new Date().getTime();
 
     cssFilesTemplate[cssFile] = 'app/sass/main.scss';
+    cssMinFilesTemplate[cssFile] = [
+        'app/bower_components/fontawesome/css/font-awesome.min.css',
+        'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        cssFile
+    ];
     jsUglifyTemplate[jsFile] = [
         'app/js/app.js',
         'app/js/controllers/CreateServerCtrl.js',
@@ -48,7 +55,8 @@ module.exports = function (grunt) {
         jshint: {
             dashboard: {
                 src: [
-                    'app/js/**/*.js'
+                    'app/js/**/*.js',
+                    '!app/js/**/*.min.js'
                 ],
                 options: {
                     jshintrc: '.jshintrc'
@@ -56,34 +64,38 @@ module.exports = function (grunt) {
             }
         },
 
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true
+            }
+        },
+
         watch: {
-            files: 'app/sass/*.scss',
-            tasks: ['sass']
+            sass: {
+                files: 'app/sass/*.scss',
+                tasks: ['sass']
+            }
         },
 
         sass: {
-            minified: {
+            main: {
                 options: {
-                    style: 'compressed',
-                    compass: true,
-                    sourcemap: 'none'
+                    sourceMap: false
                 },
                 files: cssFilesTemplate
+            }
+        },
+
+        cssmin: {
+            main: {
+                files: cssMinFilesTemplate
             }
         },
 
         concat: {
             options: {
                 separator: ';\n'
-            },
-            css: {
-                src: [
-                    'app/bower_components/fontawesome/css/font-awesome.min.css',
-                    'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
-                    'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
-                    cssFile
-                ],
-                dest: cssFile
             },
             js: {
                 files: jsConcatTemplate
@@ -145,8 +157,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-karma');
 
     // Default task.
-    grunt.registerTask('default', ['sass', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
+    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
+    grunt.registerTask('check', ['jshint', 'karma']);
 
 };

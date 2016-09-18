@@ -17,90 +17,79 @@
         };
 
         function processOsStats (visits) {
-            var stats = {},
-                data;
+            return processStats(function () {
+                var stats = {};
 
-            angular.forEach(visits, function (visit) {
-                var userAgent = visit.userAgent,
-                    os = typeof userAgent === 'undefined' || userAgent === null ? 'Others' : osFromUserAgent(userAgent);
+                angular.forEach(visits, function (visit) {
+                    var userAgent = visit.userAgent,
+                        os = typeof userAgent === 'undefined' || userAgent === null ?
+                            'Others' :
+                            osFromUserAgent(userAgent);
 
-                stats[os] = typeof stats[os] === 'undefined' ? 1 : stats[os] + 1;
+                    stats[os] = typeof stats[os] === 'undefined' ? 1 : stats[os] + 1;
+                });
+
+                return stats;
             });
-
-            data = [];
-            angular.forEach(stats, function (value) {
-                data.push(value);
-            });
-
-            return {
-                labels: Object.keys(stats),
-                data: data
-            };
         }
 
         function processBrowserStats (visits) {
-            var stats = {},
-                data;
+            return processStats(function () {
+                var stats = {};
 
-            angular.forEach(visits, function (visit) {
-                var userAgent = visit.userAgent,
-                    browser = typeof userAgent === 'undefined' || userAgent === null ?
-                        'Others' :
-                        browserFromUserAgent(userAgent);
+                angular.forEach(visits, function (visit) {
+                    var userAgent = visit.userAgent,
+                        browser = typeof userAgent === 'undefined' || userAgent === null ?
+                            'Others' :
+                            browserFromUserAgent(userAgent);
 
-                stats[browser] = typeof stats[browser] === 'undefined' ? 1 : stats[browser] + 1;
+                    stats[browser] = typeof stats[browser] === 'undefined' ? 1 : stats[browser] + 1;
+                });
+
+                return stats;
             });
-
-            data = [];
-            angular.forEach(stats, function (value) {
-                data.push(value);
-            });
-
-            return {
-                labels: Object.keys(stats),
-                data: data
-            };
         }
 
         function processReferrersStats (visits) {
-            var stats = {},
-                data;
+            return processStats(function () {
+                var stats = {};
 
-            angular.forEach(visits, function (visit) {
-                var domain = typeof visit.referer === 'undefined' || visit.referer === null || visit.referer === '' ?
-                        'Unknown' :
-                        extractDomain(visit.referer);
+                angular.forEach(visits, function (visit) {
+                    var notHasDomain = typeof visit.referer === 'undefined' ||
+                            visit.referer === null ||
+                            visit.referer === '',
+                        domain = notHasDomain ? 'Unknown' : extractDomain(visit.referer);
 
-                stats[domain] = typeof stats[domain] === 'undefined' ? 1 : stats[domain] + 1;
+                    stats[domain] = typeof stats[domain] === 'undefined' ? 1 : stats[domain] + 1;
+                });
+
+                return stats;
             });
-
-            data = [];
-            angular.forEach(stats, function (value) {
-                data.push(value);
-            });
-
-            return {
-                labels: Object.keys(stats),
-                data: data
-            };
         }
 
         function processCountriesStats (visits) {
-            var stats = {},
-                data;
+            return processStats(function () {
+                var stats = {};
 
-            angular.forEach(visits, function (visit) {
-                var notHasCountry = typeof visit.visitLocation === 'undefined' ||
-                        visit.visitLocation === null ||
-                        typeof visit.visitLocation.countryName === 'undefined' ||
-                        visit.visitLocation.countryName === null ||
-                        visit.visitLocation.countryName === '',
-                    country = notHasCountry ? 'Unknown' : visit.visitLocation.countryName;
+                angular.forEach(visits, function (visit) {
+                    var notHasCountry = typeof visit.visitLocation === 'undefined' ||
+                            visit.visitLocation === null ||
+                            typeof visit.visitLocation.countryName === 'undefined' ||
+                            visit.visitLocation.countryName === null ||
+                            visit.visitLocation.countryName === '',
+                        country = notHasCountry ? 'Unknown' : visit.visitLocation.countryName;
 
-                stats[country] = typeof stats[country] === 'undefined' ? 1 : stats[country] + 1;
+                    stats[country] = typeof stats[country] === 'undefined' ? 1 : stats[country] + 1;
+                });
+
+                return stats;
             });
+        }
 
-            data = [];
+        function processStats (statsGenerationCallback) {
+            var stats = statsGenerationCallback(),
+                data = [];
+
             angular.forEach(stats, function (value) {
                 data.push(value);
             });

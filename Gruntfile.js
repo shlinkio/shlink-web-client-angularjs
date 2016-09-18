@@ -34,8 +34,8 @@ module.exports = function (grunt) {
         'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         'app/bower_components/angular-moment/angular-moment.min.js',
-        'node_modules/chart.js/dist/Chart.min.js',
-        'node_modules/angular-chart.js/dist/angular-chart.min.js',
+        'app/bower_components/chart.js/dist/Chart.min.js',
+        'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
         jsFile
     ];
 

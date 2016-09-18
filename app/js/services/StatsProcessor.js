@@ -67,23 +67,11 @@
                 data;
 
             angular.forEach(visits, function (visit) {
-                var referer;
+                var domain = typeof visit.referer === 'undefined' || visit.referer === null || visit.referer === '' ?
+                        'Unknown' :
+                        extractDomain(visit.referer);
 
-                if (typeof visit.referer === 'undefined' || visit.referer === null) {
-                    if (typeof stats['Unknown'] === 'undefined') {
-                        stats['Unknown'] = 1;
-                    } else {
-                        stats['Unknown'] += 1;
-                    }
-                    return;
-                }
-
-                referer = extractDomain(visit.referer);
-                if (typeof stats[referer] === 'undefined') {
-                    stats[referer] = 1;
-                } else {
-                    stats[referer] += 1;
-                }
+                stats[domain] = typeof stats[domain] === 'undefined' ? 1 : stats[domain] + 1;
             });
 
             data = [];

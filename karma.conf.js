@@ -47,6 +47,10 @@ module.exports = function (config) {
                     type : 'clover',
                     file : 'clover.xml',
                     subdir: '.'
+                },
+                {
+                    type : 'html',
+                    subdir: 'html'
                 }
             ]
         }

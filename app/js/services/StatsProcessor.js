@@ -90,23 +90,14 @@
                 data;
 
             angular.forEach(visits, function (visit) {
-                var country;
+                var notHasCountry = typeof visit.visitLocation === 'undefined' ||
+                        visit.visitLocation === null ||
+                        typeof visit.visitLocation.countryName === 'undefined' ||
+                        visit.visitLocation.countryName === null ||
+                        visit.visitLocation.countryName === '',
+                    country = notHasCountry ? 'Unknown' : visit.visitLocation.countryName;
 
-                if (typeof visit.visitLocation === 'undefined' || visit.visitLocation === null) {
-                    if (typeof stats['Unknown'] === 'undefined') {
-                        stats['Unknown'] = 1;
-                    } else {
-                        stats['Unknown'] += 1;
-                    }
-                    return;
-                }
-
-                country = visit.visitLocation.countryName;
-                if (typeof stats[country] === 'undefined') {
-                    stats[country] = 1;
-                } else {
-                    stats[country] += 1;
-                }
+                stats[country] = typeof stats[country] === 'undefined' ? 1 : stats[country] + 1;
             });
 
             data = [];

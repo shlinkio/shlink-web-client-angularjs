@@ -9,7 +9,19 @@
         "FileReader": true,
         "WebFontConfig": true,
         "angular" : true,
-        "moment": true
+        "moment": true,
+        "jasmine": true,
+        "describe": true,
+        "xdescribe": true,
+        "before": true,
+        "beforeEach": true,
+        "after": true,
+        "afterEach": true,
+        "it": true,
+        "xit": true,
+        "inject": true,
+        "expect": true,
+        "spyOn": true
     },
 
     "bitwise": true,

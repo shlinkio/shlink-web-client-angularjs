@@ -29,7 +29,14 @@
 </section>
 
 <section class="visits-stats-container">
-    <div class="row-fluid" ng-if="vm.visitsCount == 0">
+    <div class="row-fluid" ng-if="vm.loading">
+        <div class="col-md-8 col-md-offset-2 col-sm-12">
+            <div class="well text-center no-visits-disclaimer">
+                <h3><i class="fa fa-circle-o-notch fa-spin"></i> Loading...</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" ng-if="vm.visitsCount == 0 && ! vm.loading">
         <div class="col-md-8 col-md-offset-2 col-sm-12">
             <div class="well text-center no-visits-disclaimer">
                 <h3>There has been no visits&nbsp;&nbsp;<span style="font-family: monospace;">:(</span></h3>

@@ -21,49 +21,10 @@
                 data;
 
             angular.forEach(visits, function (visit) {
-                var userAgent = visit.userAgent;
+                var userAgent = visit.userAgent,
+                    os = typeof userAgent === 'undefined' || userAgent === null ? 'Others' : osFromUserAgent(userAgent);
 
-                if (typeof userAgent === 'undefined' || userAgent === null) {
-                    if (typeof stats['Others'] === 'undefined') {
-                        stats['Others'] = 1;
-                    } else {
-                        stats['Others'] += 1;
-                    }
-                    return;
-                }
-
-                userAgent = userAgent.toLowerCase();
-                if (userAgent.indexOf('linux') >= 0) {
-                    if (typeof stats['Linux'] === 'undefined') {
-                        stats['Linux'] = 1;
-                    } else {
-                        stats['Linux'] += 1;
-                    }
-                } else if (userAgent.indexOf('windows') >= 0) {
-                    if (typeof stats['Windows'] === 'undefined') {
-                        stats['Windows'] = 1;
-                    } else {
-                        stats['Windows'] += 1;
-                    }
-                } else if (userAgent.indexOf('mac') >= 0) {
-                    if (typeof stats['MacOS'] === 'undefined') {
-                        stats['MacOS'] = 1;
-                    } else {
-                        stats['MacOS'] += 1;
-                    }
-                } else if (userAgent.indexOf('mobi') >= 0) {
-                    if (typeof stats['Mobile'] === 'undefined') {
-                        stats['Mobile'] = 1;
-                    } else {
-                        stats['Mobile'] += 1;
-                    }
-                } else {
-                    if (typeof stats['Others'] === 'undefined') {
-                        stats['Others'] = 1;
-                    } else {
-                        stats['Others'] += 1;
-                    }
-                }
+                stats[os] = typeof stats[os] === 'undefined' ? 1 : stats[os] + 1;
             });
 
             data = [];
@@ -215,6 +176,28 @@
         }
     }
 
+    /**
+     *
+     * @param userAgent
+     * @returns {String}
+     */
+    function osFromUserAgent (userAgent) {
+        userAgent = userAgent.toLowerCase();
+
+        switch (true) {
+            case (userAgent.indexOf('linux') >= 0):
+                return 'Linux';
+            case (userAgent.indexOf('windows') >= 0):
+                return 'Windows';
+            case (userAgent.indexOf('mac') >= 0):
+                return 'MacOS';
+            case (userAgent.indexOf('mobi') >= 0):
+                return 'Mobile';
+            default:
+                return 'Others';
+        }
+    }
+    
     function extractDomain (url) {
         var domain;
         //find & remove protocol (http, ftp, etc.) and get domain

@@ -160,8 +160,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-karma');
 
-    // Default task.
+    // Custom tasks
     grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
     grunt.registerTask('check', ['jshint', 'karma']);
-
 };

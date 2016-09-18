@@ -74,7 +74,7 @@
             return {
                 labels: Object.keys(stats),
                 data: data
-            }
+            };
         }
 
         function processBrowserStats (visits) {
@@ -141,7 +141,7 @@
             return {
                 labels: Object.keys(stats),
                 data: data
-            }
+            };
         }
 
         function processReferrersStats (visits) {
@@ -176,7 +176,7 @@
             return {
                 labels: Object.keys(stats),
                 data: data
-            }
+            };
         }
 
         function processCountriesStats (visits) {
@@ -211,14 +211,14 @@
             return {
                 labels: Object.keys(stats),
                 data: data
-            }
+            };
         }
     }
 
     function extractDomain (url) {
         var domain;
         //find & remove protocol (http, ftp, etc.) and get domain
-        if (url.indexOf("://") > -1) {
+        if (url.indexOf('://') > -1) {
             domain = url.split('/')[2];
         }
         else {

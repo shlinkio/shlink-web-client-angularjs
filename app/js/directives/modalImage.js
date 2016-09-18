@@ -20,7 +20,7 @@
                     $scope.title = title;
 
                     $('.image-modal').modal();
-                }
+                };
             }]
         };
     }

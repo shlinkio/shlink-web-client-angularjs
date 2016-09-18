@@ -17,7 +17,7 @@
         };
 
         function processOsStats (visits) {
-            return processStats(function () {
+            return generateStatsResponse(function () {
                 var stats = {};
 
                 angular.forEach(visits, function (visit) {
@@ -34,7 +34,7 @@
         }
 
         function processBrowserStats (visits) {
-            return processStats(function () {
+            return generateStatsResponse(function () {
                 var stats = {};
 
                 angular.forEach(visits, function (visit) {
@@ -51,7 +51,7 @@
         }
 
         function processReferrersStats (visits) {
-            return processStats(function () {
+            return generateStatsResponse(function () {
                 var stats = {};
 
                 angular.forEach(visits, function (visit) {
@@ -68,7 +68,7 @@
         }
 
         function processCountriesStats (visits) {
-            return processStats(function () {
+            return generateStatsResponse(function () {
                 var stats = {};
 
                 angular.forEach(visits, function (visit) {
@@ -86,7 +86,7 @@
             });
         }
 
-        function processStats (statsGenerationCallback) {
+        function generateStatsResponse (statsGenerationCallback) {
             var stats = statsGenerationCallback(),
                 data = [];
 

@@ -43,55 +43,12 @@
                 data;
 
             angular.forEach(visits, function (visit) {
-                var userAgent = visit.userAgent;
+                var userAgent = visit.userAgent,
+                    browser = typeof userAgent === 'undefined' || userAgent === null ?
+                        'Others' :
+                        browserFromUserAgent(userAgent);
 
-                if (typeof userAgent === 'undefined' || userAgent === null) {
-                    if (typeof stats['Others'] === 'undefined') {
-                        stats['Others'] = 1;
-                    } else {
-                        stats['Others'] += 1;
-                    }
-                    return;
-                }
-
-                userAgent = userAgent.toLowerCase();
-                if (userAgent.indexOf('firefox') >= 0) {
-                    if (typeof stats['Firefox'] === 'undefined') {
-                        stats['Firefox'] = 1;
-                    } else {
-                        stats['Firefox'] += 1;
-                    }
-                } else if (userAgent.indexOf('chrome') >= 0) {
-                    if (typeof stats['Chrome'] === 'undefined') {
-                        stats['Chrome'] = 1;
-                    } else {
-                        stats['Chrome'] += 1;
-                    }
-                } else if (userAgent.indexOf('safari') >= 0) {
-                    if (typeof stats['Safari'] === 'undefined') {
-                        stats['Safari'] = 1;
-                    } else {
-                        stats['Safari'] += 1;
-                    }
-                } else if (userAgent.indexOf('opera') >= 0) {
-                    if (typeof stats['Opera'] === 'undefined') {
-                        stats['Opera'] = 1;
-                    } else {
-                        stats['Opera'] += 1;
-                    }
-                } else if (userAgent.indexOf('msie') >= 0) {
-                    if (typeof stats['Internet Explorer'] === 'undefined') {
-                        stats['Internet Explorer'] = 1;
-                    } else {
-                        stats['Internet Explorer'] += 1;
-                    }
-                } else {
-                    if (typeof stats['Others'] === 'undefined') {
-                        stats['Others'] = 1;
-                    } else {
-                        stats['Others'] += 1;
-                    }
-                }
+                stats[browser] = typeof stats[browser] === 'undefined' ? 1 : stats[browser] + 1;
             });
 
             data = [];
@@ -178,7 +135,7 @@
 
     /**
      *
-     * @param userAgent
+     * @param {String} userAgent
      * @returns {String}
      */
     function osFromUserAgent (userAgent) {
@@ -197,18 +154,40 @@
                 return 'Others';
         }
     }
-    
-    function extractDomain (url) {
-        var domain;
-        //find & remove protocol (http, ftp, etc.) and get domain
-        if (url.indexOf('://') > -1) {
-            domain = url.split('/')[2];
-        }
-        else {
-            domain = url.split('/')[0];
-        }
 
-        //find & remove port number
+    /**
+     *
+     * @param {String} userAgent
+     * @returns {String}
+     */
+    function browserFromUserAgent (userAgent) {
+        userAgent = userAgent.toLowerCase();
+
+        switch (true) {
+            case (userAgent.indexOf('firefox') >= 0):
+                return 'Firefox';
+            case (userAgent.indexOf('chrome') >= 0):
+                return 'Chrome';
+            case (userAgent.indexOf('safari') >= 0):
+                return 'Safari';
+            case (userAgent.indexOf('opera') >= 0):
+                return 'Opera';
+            case (userAgent.indexOf('msie') >= 0):
+                return 'Internet Explorer';
+            default:
+                return 'Others';
+        }
+    }
+
+    /**
+     *
+     * @param {String} url
+     * @returns {String}
+     */
+    function extractDomain (url) {
+        // Find & remove protocol (http, ftp, etc.) and get domain
+        var domain = url.indexOf('://') > -1 ? url.split('/')[2] : url.split('/')[0];
+        // Find & remove port number
         domain = domain.split(':')[0];
 
         return domain;

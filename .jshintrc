@@ -21,7 +21,8 @@
         "xit": true,
         "inject": true,
         "expect": true,
-        "spyOn": true
+        "spyOn": true,
+        "Clipboard": true
     },
 
     "bitwise": true,

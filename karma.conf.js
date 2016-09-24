@@ -12,6 +12,7 @@ module.exports = function (config) {
             'app/bower_components/angular-moment/angular-moment.min.js',
             'app/bower_components/chart.js/dist/Chart.min.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
+            'app/bower_components/clipboard/dist/clipboard.min.js',
             'app/js/**/*.js',
 
             // Load test files

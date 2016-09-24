@@ -6,27 +6,30 @@
         .module('shlink')
         .controller('CreateShortUrlCtrl', [
             'ApiService',
-            '$state',
             CreateShortUrlCtrl
         ]);
 
-    function CreateShortUrlCtrl (ApiService, $state) {
+    function CreateShortUrlCtrl (ApiService) {
         var vm = this;
 
-        vm.createShortCode = function () {
-            var $form = $('#createShortCode'),
-                url = $form.find('[name=url]').val();
+        vm.creating = false;
+        vm.shortUrl = '';
+        vm.url = '';
+        vm.resp = {isError: false, isSuccess: false};
 
-            ApiService.createShortUrl(url).then(function () {
-                $state.go('server.list');
+        vm.createShortCode = function () {
+            vm.creating = true;
+            ApiService.createShortUrl(vm.url).then(function (data) {
+                vm.creating = false;
+                vm.resp.isSuccess = true;
+                vm.resp.isError = false;
+                vm.shortUrl = data.shortUrl;
             }, function (resp) {
-                $form.append(
-                    '<div class="alert alert-danger alert-dismissable">' +
-                        '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                        '<b>Oops!</b> ' + resp.data.message +
-                    '</div>'
-                );
+                vm.creating = false;
+                vm.resp.isSuccess = false;
+                vm.resp.isError = true;
+                vm.resp.message = resp.data.message;
             });
-        }
+        };
     }
 })();

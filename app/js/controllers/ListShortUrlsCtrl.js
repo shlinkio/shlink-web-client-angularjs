@@ -14,20 +14,22 @@
     function ListShortUrlsCtrl (ApiService, $state, ServerService) {
         var vm = this,
             page = $state.params.page || 1,
-            $table = $('.short-urls-list');
+            $body = $('body');
 
         vm.shortUrls = {};
         vm.currentServer = ServerService.getCurrent();
+        vm.loading = true;
         ApiService.listShortUrls(page).then(function (data) {
+            vm.loading = false;
             vm.shortUrls = data.shortUrls;
         });
 
-        $table.off('mouseover');
-        $table.on('mouseover', 'tbody tr', function () {
+        $body.off('mouseover', '.short-urls-list tbody tr');
+        $body.on('mouseover', '.short-urls-list tbody tr', function () {
             $(this).find('.options').addClass('visible');
         });
-        $table.off('mouseleave');
-        $table.on('mouseleave', 'tbody tr', function () {
+        $body.off('mouseleave', '.short-urls-list tbody tr');
+        $body.on('mouseleave', '.short-urls-list tbody tr', function () {
             var $options = $(this).find('.options');
 
             $options.removeClass('visible');

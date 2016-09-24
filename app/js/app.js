@@ -75,7 +75,23 @@ angular
         '$rootScope',
         'localStorageService',
         'ServerService',
-        function ($rootScope, localStorageService, ServerService) {
+        '$timeout',
+        function ($rootScope, localStorageService, ServerService, $timeout) {
+            var clipboard = new Clipboard('.clipboard'),
+                copyTimer;
+            clipboard.on('success', function (e) {
+                $timeout.cancel(copyTimer);
+                $(e.trigger).tooltip({
+                    placement: 'bottom',
+                    title: 'Copied!',
+                    trigger: 'manual'
+                });
+                $(e.trigger).tooltip('show');
+                copyTimer = $timeout(function () {
+                    $(e.trigger).tooltip('hide');
+                }, 3000);
+            });
+
             // After changing the state, scroll to top
             $rootScope.$on('$stateChangeSuccess', function () {
                 $('html, body').scrollTop(0);

@@ -4,7 +4,7 @@
   "authors": [
     "Alejandro Celaya <alejandro@alejandrocelaya.com>"
   ],
-  "description": "An AngularJS-powered web client for Shlink",
+  "description": "An Angular JS client application for Shlink",
   "main": "app/js/app.js",
   "moduleType": [],
   "keywords": [
@@ -27,6 +27,11 @@
     "jquery": "^3.1",
     "angular-local-storage": "~0.4",
     "bootstrap-3-datepicker": "~1.6",
-    "angular-moment": "^1.0"
+    "angular-moment": "^1.0",
+    "angular-chart.js": "^1.0",
+    "clipboard": "^1.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5"
   }
 }

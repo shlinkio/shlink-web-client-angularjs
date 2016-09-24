@@ -44,4 +44,29 @@ foreach ($lines as $i => $line) {
 $lines = array_merge($lines, $lastLines);
 file_put_contents('app/index.html', implode(PHP_EOL, $lines));
 
-// TODO Add directive to Gruntfile
+// Add directive to Gruntfile
+$gruntfileLines = explode(PHP_EOL, file_get_contents('Gruntfile.js'));
+$firstLineFound = false;
+$lastLineFound = false;
+$prev = [];
+$next = [];
+foreach ($gruntfileLines as $index => $line) {
+    if (strpos($line, 'jsUglifyTemplate[jsFile] = [') > 0) {
+        $firstLineFound = true;
+    }
+
+    if ($firstLineFound && strpos($line, '];') > 0) {
+        $lastLineFound = true;
+        $firstLineFound = false;
+        $prev[count($prev) - 1] = $prev[count($prev) - 1] . ',';
+    }
+
+    if ($lastLineFound) {
+        $next[] = $line;
+    } else {
+        $prev[] = $line;
+    }
+}
+
+$prev[] = sprintf('        \'app/js/directives/%s.js\'', $directive);
+file_put_contents('Gruntfile.js', implode(PHP_EOL, array_merge($prev, $next)));

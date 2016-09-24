@@ -17,6 +17,7 @@
 
         vm.currentServer = ServerService.getCurrent();
         vm.visitsCount = 0;
+        vm.loading = true;
         vm.shortUrl = $state.params.shortUrl;
         vm.startDate = null;
         vm.endDate = null;
@@ -49,6 +50,7 @@
             ApiService.getVisits($state.params.shortCode, dates).then(function (data) {
                 var visits = data.visits.data;
 
+                vm.loading = false;
                 vm.visitsCount = visits.length;
                 vm.osStats = StatsProcessor.processOsStats(visits);
                 vm.browserStats = StatsProcessor.processBrowserStats(visits);

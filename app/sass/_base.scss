@@ -8,7 +8,11 @@ $brandColorDark: darken($brandColor, 7%);
 #main {
     padding-top: 50px;
 
-    @media (min-width: 993px) {
+    @media (min-width: 768px) {
         padding: 90px 40px 40px;
     }
+}
+
+.clipboard {
+    cursor: pointer;
 }

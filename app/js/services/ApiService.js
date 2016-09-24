@@ -44,7 +44,7 @@
         }
 
         function getShortUrl (shortCode) {
-            return performRequest('GET', '/rest/short-codes/' + shortCode, undefined, params);
+            return performRequest('GET', '/rest/short-codes/' + shortCode);
         }
 
         function getVisits (shortCode, dates) {
@@ -102,6 +102,7 @@
             } else {
                 authenticate().then(function (resp) {
                     callback(localStorageService.get('token'));
+                    return resp;
                 });
             }
 

@@ -4,11 +4,18 @@ module.exports = function (grunt) {
     var cssFile = grunt.option('css-file') || 'app/css/main.min.css',
         jsFile = grunt.option('js-file') || 'app/js/main.min.js',
         cssFilesTemplate = {},
+        cssMinFilesTemplate = {},
         jsUglifyTemplate = {},
         jsConcatTemplate = {},
         currentTimestamp = new Date().getTime();
 
     cssFilesTemplate[cssFile] = 'app/sass/main.scss';
+    cssMinFilesTemplate[cssFile] = [
+        'app/bower_components/fontawesome/css/font-awesome.min.css',
+        'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
+        'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        cssFile
+    ];
     jsUglifyTemplate[jsFile] = [
         'app/js/app.js',
         'app/js/controllers/CreateServerCtrl.js',
@@ -22,7 +29,8 @@ module.exports = function (grunt) {
         'app/js/directives/pagination.js',
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
-        'app/js/controllers/CreateShortUrlCtrl.js'
+        'app/js/controllers/CreateShortUrlCtrl.js',
+        'app/js/directives/modalImage.js'
     ];
     jsConcatTemplate[jsFile] = [
         'app/bower_components/jquery/dist/jquery.min.js',
@@ -33,8 +41,9 @@ module.exports = function (grunt) {
         'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         'app/bower_components/angular-moment/angular-moment.min.js',
-        'node_modules/chart.js/dist/Chart.min.js',
-        'node_modules/angular-chart.js/dist/angular-chart.min.js',
+        'app/bower_components/chart.js/dist/Chart.min.js',
+        'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
+        'app/bower_components/clipboard/dist/clipboard.min.js',
         jsFile
     ];
 
@@ -47,7 +56,8 @@ module.exports = function (grunt) {
         jshint: {
             dashboard: {
                 src: [
-                    'app/js/**/*.js'
+                    'app/js/**/*.js',
+                    '!app/js/**/*.min.js'
                 ],
                 options: {
                     jshintrc: '.jshintrc'
@@ -55,34 +65,38 @@ module.exports = function (grunt) {
             }
         },
 
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun: true
+            }
+        },
+
         watch: {
-            files: 'app/sass/*.scss',
-            tasks: ['sass']
+            sass: {
+                files: 'app/sass/*.scss',
+                tasks: ['sass']
+            }
         },
 
         sass: {
-            minified: {
+            main: {
                 options: {
-                    style: 'compressed',
-                    compass: true,
-                    sourcemap: 'none'
+                    sourceMap: false
                 },
                 files: cssFilesTemplate
+            }
+        },
+
+        cssmin: {
+            main: {
+                files: cssMinFilesTemplate
             }
         },
 
         concat: {
             options: {
                 separator: ';\n'
-            },
-            css: {
-                src: [
-                    'app/bower_components/fontawesome/css/font-awesome.min.css',
-                    'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
-                    'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
-                    cssFile
-                ],
-                dest: cssFile
             },
             js: {
                 files: jsConcatTemplate
@@ -123,7 +137,7 @@ module.exports = function (grunt) {
         },
 
         copy: {
-            main: {
+            fontAwesomeFonts: {
                 files: [{
                     expand: true,
                     cwd: 'app/bower_components/fontawesome/fonts/',
@@ -137,15 +151,17 @@ module.exports = function (grunt) {
 
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-sass');
 
-    // Default task.
-    grunt.registerTask('default', ['sass', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
-
+    // Custom tasks
+    grunt.registerTask('default', ['sass', 'cssmin', 'uglify', 'concat', 'processhtml', 'string-replace', 'copy']);
+    grunt.registerTask('check', ['jshint', 'karma']);
 };

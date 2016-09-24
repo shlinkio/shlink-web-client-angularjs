@@ -1,5 +1,14 @@
 ## CHANGELOG
 
+### 1.0.0
+
+**Enhancements:**
+
+* [27: Allow to copy to clipboard generated short codes](https://github.com/acelaya/url-shortener/issues/27)
+* [15: Add preloader during server requests](https://github.com/acelaya/url-shortener/issues/15)
+* [10: Improve StatsProcessor by removing duplicated code and reducing complexity](https://github.com/acelaya/url-shortener/issues/10)
+* [6: Add some tests](https://github.com/acelaya/url-shortener/issues/6)
+
 ### 0.2.0
 
 **Features**

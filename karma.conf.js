@@ -19,6 +19,10 @@ module.exports = function (config) {
             'test/**/*.js'
         ],
 
+        processContentExclude: [
+            'app/js/main.min.js'
+        ],
+
         autoWatch: true,
         colors: true,
 

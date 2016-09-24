@@ -11,7 +11,13 @@
 
     <div class="alert alert-info alert-dismissable" ng-if="vm.resp.isSuccess">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
-        <b>Great!</b> The short URL is <b>{{vm.shortUrl}}</b>
+        <b>Great!</b>
+        The short URL is
+        <b>{{vm.shortUrl}}</b>
+        &nbsp;&nbsp;&nbsp;
+        <button type="button" class="clipboard btn btn-default btn-sm" data-clipboard-text="{{vm.shortUrl}}">
+            <i class="fa fa-clipboard"></i> Copy
+        </button>
     </div>
     <div class="alert alert-danger alert-dismissable" ng-if="vm.resp.isError">
         <button type="button" class="close" data-dismiss="alert">&times;</button>

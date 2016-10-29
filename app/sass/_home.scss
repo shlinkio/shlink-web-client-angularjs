@@ -35,6 +35,11 @@
         word-break: break-all;
     }
 
+    .label.tag {
+        margin-right: 3px;
+        cursor: pointer;
+    }
+
     @media (max-width: 767px) {
         thead {
             display: none;

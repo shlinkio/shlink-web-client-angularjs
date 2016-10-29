@@ -35,6 +35,14 @@
         word-break: break-all;
     }
 
+    th:first-child, td:first-child {
+        width: 130px;
+    }
+
+    th:last-child, td:last-child {
+        width: 40px;
+    }
+
     .label.tag {
         margin-right: 3px;
         cursor: pointer;

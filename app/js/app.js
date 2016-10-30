@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js', 'angularMoment'])
+    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js', 'angularMoment', 'ngclipboard'])
     .config([
         '$stateProvider',
         'localStorageServiceProvider',
@@ -76,23 +76,7 @@ angular
         '$rootScope',
         'localStorageService',
         'ServerService',
-        '$timeout',
-        function ($rootScope, localStorageService, ServerService, $timeout) {
-            var clipboard = new Clipboard('.clipboard'),
-                copyTimer;
-            clipboard.on('success', function (e) {
-                $timeout.cancel(copyTimer);
-                $(e.trigger).tooltip({
-                    placement: 'bottom',
-                    title: 'Copied!',
-                    trigger: 'manual'
-                });
-                $(e.trigger).tooltip('show');
-                copyTimer = $timeout(function () {
-                    $(e.trigger).tooltip('hide');
-                }, 3000);
-            });
-
+        function ($rootScope, localStorageService, ServerService) {
             // After changing the state, scroll to top and hide top menu
             $rootScope.$on('$stateChangeSuccess', function () {
                 var $navbarToggle = $('.navbar-header .navbar-toggle');

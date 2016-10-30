@@ -15,7 +15,7 @@
         The short URL is
         <b>{{vm.shortUrl}}</b>
         &nbsp;&nbsp;&nbsp;
-        <button type="button" class="clipboard btn btn-default btn-sm" data-clipboard-text="{{vm.shortUrl}}">
+        <button type="button" class="btn btn-default btn-sm" ngclipboard data-clipboard-text="{{vm.shortUrl}}" ngclipboard-success="vm.clipboardSuccess(e)">
             <i class="fa fa-clipboard"></i> Copy
         </button>
     </div>

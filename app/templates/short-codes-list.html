@@ -12,8 +12,8 @@
             <th>Created at</th>
             <th>Short URL</th>
             <th>Original URL</th>
-            <th>Visits</th>
             <th>Tags</th>
+            <th>Visits</th>
             <th></th>
         </tr>
     </thead>
@@ -22,13 +22,13 @@
             <td data-th="Created at: ">{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
             <td data-th="Short URL: "><a target="_blank" ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}">{{vm.currentServer.url}}/{{shortUrl.shortCode}}</a></td>
             <td data-th="Original URL: "><a target="_blank" ng-href="{{shortUrl.originalUrl}}">{{shortUrl.originalUrl}}</a></td>
-            <td data-th="Visits: ">{{shortUrl.visitsCount}}</td>
-            <td data-tg="Tags: ">
+            <td data-th="Tags: ">
                 <i ng-if="shortUrl.tags.length == 0"><small>No tags</small></i>
-                <ul class="list-unstyled list-inline" ng-if="shortUrl.tags.length > 0">
+                <ul class="list-unstyled list-inline tags-list" ng-if="shortUrl.tags.length > 0">
                     <li class="label tag" ng-repeat="tag in shortUrl.tags" ng-style="{backgroundColor: (tag | color)}">{{tag}}</li>
                 </ul>
             </td>
+            <td data-th="Visits: ">{{shortUrl.visitsCount}}</td>
             <td>
                 <div class="btn-group">
                     <button class="dropdown-toggle btn btn-default options" data-toggle="dropdown">

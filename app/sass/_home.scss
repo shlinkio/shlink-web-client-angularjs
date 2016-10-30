@@ -36,16 +36,28 @@
     }
 
     th:first-child, td:first-child {
-        width: 130px;
+        @media (min-width: 768px) {
+            width: 130px;
+        }
     }
 
     th:last-child, td:last-child {
-        width: 40px;
+        @media (min-width: 768px) {
+            width: 40px;
+        }
     }
 
     .label.tag {
         margin-right: 3px;
         cursor: pointer;
+    }
+
+    .tags-list {
+        margin-left: 0;
+
+        @media (max-width: 767px) {
+            display: inline-block;
+        }
     }
 
     @media (max-width: 767px) {

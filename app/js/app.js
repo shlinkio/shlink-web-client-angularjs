@@ -54,7 +54,8 @@ angular
 
                 .state('server.short-code', {
                     url: '/short-code/{shortCode}',
-                    template: '<ui-view></ui-view>'
+                    template: '<ui-view></ui-view>',
+                    abstract: true
                 })
                 .state('server.short-code.visits', {
                     url: '/visits',
@@ -92,9 +93,14 @@ angular
                 }, 3000);
             });
 
-            // After changing the state, scroll to top
+            // After changing the state, scroll to top and hide top menu
             $rootScope.$on('$stateChangeSuccess', function () {
+                var $navbarToggle = $('.navbar-header .navbar-toggle');
+
                 $('html, body').scrollTop(0);
+                if (! $navbarToggle.hasClass('collapsed')) {
+                    $navbarToggle.click();
+                }
             });
 
             // Before changing the state, check the new server and set it as the default, un-setting the token in the

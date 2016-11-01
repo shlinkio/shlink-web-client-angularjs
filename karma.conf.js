@@ -13,6 +13,8 @@ module.exports = function (config) {
             'app/bower_components/chart.js/dist/Chart.min.js',
             'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
             'app/bower_components/clipboard/dist/clipboard.min.js',
+            'app/bower_components/ngclipboard/dist/ngclipboard.min.js',
+            'app/bower_components/angular-smart-table/dist/smart-table.min.js',
             'app/js/**/*.js',
 
             // Load test files

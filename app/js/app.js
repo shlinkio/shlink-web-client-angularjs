@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js', 'angularMoment', 'ngclipboard'])
+    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js', 'angularMoment', 'ngclipboard', 'smart-table'])
     .config([
         '$stateProvider',
         'localStorageServiceProvider',

@@ -19,16 +19,21 @@
 
         vm.shortUrls = {};
         vm.loading = false;
+        vm.filteringByTag = null;
         vm.currentServer = ServerService.getCurrent();
 
+        vm.filterByTag = filterByTag;
         vm.refreshList = refreshList;
 
         function refreshList (tableState) {
-            if (isFirst && typeof $rootScope.shortURLsTableState !== 'undefined') {
-                isFirst = false;
-                angular.extend(tableState, $rootScope.shortURLsTableState.tableState);
+            if (typeof tableState === 'undefined') {
+                tableState = $rootScope.tableState;
             }
-            $rootScope.shortURLsTableState = {tableState: tableState};
+            if (isFirst && typeof $rootScope.tableState !== 'undefined') {
+                isFirst = false;
+                angular.extend(tableState, $rootScope.tableState);
+            }
+            $rootScope.tableState = tableState;
 
             vm.loading = true;
             ApiService.listShortUrls(buildListParams(tableState)).then(function (data) {
@@ -56,7 +61,18 @@
                 params.searchTerm = tableState.search.predicateObject.$;
             }
 
+            // Apply tag filtering
+            if (typeof $rootScope.tableTag !== 'undefined' && $rootScope.tableTag !== null) {
+                params.tags = [$rootScope.tableTag];
+            }
+
             return params;
+        }
+
+        function filterByTag (tag) {
+            $rootScope.tableTag = tag;
+            vm.filteringByTag = tag;
+            refreshList();
         }
 
         // FIXME Try to achieve this without jQuery

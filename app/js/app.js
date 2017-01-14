@@ -101,7 +101,7 @@ angular
             // After changing the state, if we come from the list state and not changing page, clear tableState
             $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
                 if (fromState.name === 'server.list' && toState.name !== 'server.list') {
-                    delete $rootScope.tableState;
+                    delete $rootScope.shortURLsTableState;
                 }
             });
         }

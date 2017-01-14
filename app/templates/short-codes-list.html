@@ -1,13 +1,4 @@
-<div class="row-fluid" ng-if="vm.loading">
-    <div class="col-md-8 col-md-offset-2 col-sm-12">
-        <div class="well text-center no-visits-disclaimer">
-            <h3><i class="fa fa-circle-o-notch fa-spin"></i> Loading...</h3>
-        </div>
-    </div>
-</div>
-<div class="clearfix"></div>
-
-<div st-pipe="vm.refreshList" st-table="vm.shortUrls.data" ng-if="! vm.loading">
+<div st-pipe="vm.refreshList" st-table="vm.shortUrls.data">
     <div class="form-group has-feedback">
         <input type="search" class="form-control" placeholder="Search..." st-search>
         <i class="fa fa-search form-control-feedback"></i>
@@ -24,6 +15,12 @@
             </tr>
         </thead>
         <tbody>
+            <tr ng-if="vm.loading">
+                <td colspan="6" class="text-center"><i class="fa fa-spin fa-circle-o-notch"></i> Loading...</td>
+            </tr>
+            <tr ng-if="! vm.loading && vm.shortUrls.data.length == 0">
+                <td colspan="6" class="text-center">No results found</td>
+            </tr>
             <tr ng-repeat="shortUrl in vm.shortUrls.data">
                 <td data-th="Created at: ">{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
                 <td data-th="Short URL: "><a target="_blank" ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}">{{vm.currentServer.url}}/{{shortUrl.shortCode}}</a></td>

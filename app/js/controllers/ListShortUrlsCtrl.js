@@ -18,18 +18,21 @@
             isFirst = true;
 
         vm.shortUrls = {};
+        vm.loading = false;
         vm.currentServer = ServerService.getCurrent();
 
         vm.refreshList = refreshList;
 
         function refreshList (tableState) {
-            if (isFirst && typeof $rootScope.tableState !== 'undefined') {
+            if (isFirst && typeof $rootScope.shortURLsTableState !== 'undefined') {
                 isFirst = false;
-                angular.extend(tableState, $rootScope.tableState);
+                angular.extend(tableState, $rootScope.shortURLsTableState.tableState);
             }
-            $rootScope.tableState = tableState;
+            $rootScope.shortURLsTableState = {tableState: tableState};
 
+            vm.loading = true;
             ApiService.listShortUrls(buildListParams(tableState)).then(function (data) {
+                vm.loading = false;
                 vm.shortUrls = data.shortUrls;
             });
         }

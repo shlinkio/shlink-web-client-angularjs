@@ -89,19 +89,19 @@ angular
 
             // Before changing the state, check the new server and set it as the default, un-setting the token in the
             // process
-            $rootScope.$on('$stateChangeStart', function (
-                event,
-                toState,
-                toParams /*,
-                fromState,
-                fromParams,
-                options */
-            ) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
                 var serverId = toParams.serverId || null,
                     currentServer = ServerService.getCurrent();
 
                 if (serverId !== null && currentServer !== null && currentServer.id !== serverId) {
                     ServerService.setCurrent(serverId);
+                }
+            });
+
+            // After changing the state, if we come from the list state and not changing page, clear tableState
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+                if (fromState.name === 'server.list' && toState.name !== 'server.list') {
+                    delete $rootScope.tableState;
                 }
             });
         }

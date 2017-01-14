@@ -38,8 +38,7 @@
             });
         }
 
-        function listShortUrls (page) {
-            var params = typeof page !== 'undefined' && page !== null ? {page: page} : undefined;
+        function listShortUrls (params) {
             return performRequest('GET', '/rest/short-codes', undefined, params);
         }
 
@@ -76,7 +75,8 @@
                         url: currentServer.url + url,
                         data: theData,
                         params: theParams,
-                        headers: headers
+                        headers: headers,
+                        paramSerializer: '$httpParamSerializerJQLike'
                     }).then(function (resp) {
                         // Override token
                         var newToken = resp.headers('Authorization');

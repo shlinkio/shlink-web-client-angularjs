@@ -1,5 +1,27 @@
 ## CHANGELOG
 
+### 1.1.0
+
+**Enhancements:**
+
+* [30: Add copy-to-clipboard button in short URL list](https://github.com/acelaya/url-shortener/issues/30)
+* [33: Add tags to the short URLs list](https://github.com/acelaya/url-shortener/issues/33)
+
+**Features**
+
+* [34: Allow to define tags for a short URL when created](https://github.com/acelaya/url-shortener/issues/34)
+* [32: Allow to sort and filter de short URLs list](https://github.com/acelaya/url-shortener/issues/32)
+
+**Tasks:**
+
+* [29: Try to remove jquery syntax when possible](https://github.com/acelaya/url-shortener/issues/29)
+* [26: Increase code coverage](https://github.com/acelaya/url-shortener/issues/26)
+* [36: Dockerize dev environment](https://github.com/acelaya/url-shortener/issues/36)
+
+**Bugs**
+
+* [31: Make top dropdown menu to be hidden on mobile devices after clicking on any section](https://github.com/acelaya/url-shortener/issues/31)
+
 ### 1.0.0
 
 **Enhancements:**

@@ -60,9 +60,11 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
-            dashboard: {
+            main: {
                 src: [
                     'app/js/**/*.js',
+                    'test/**/*.js',
+                    '*.js',
                     '!app/js/**/*.min.js'
                 ],
                 options: {
@@ -88,7 +90,7 @@ module.exports = function (grunt) {
         sass: {
             main: {
                 options: {
-                    sourceMap: false
+                    sourceMap: true
                 },
                 files: cssFilesTemplate
             }

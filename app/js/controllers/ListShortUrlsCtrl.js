@@ -14,7 +14,6 @@
 
     function ListShortUrlsCtrl (ApiService, $state, ServerService, $rootScope) {
         var vm = this,
-            $body = $('body'),
             isFirst = true;
 
         vm.shortUrls = {};
@@ -74,20 +73,5 @@
             vm.filteringByTag = tag;
             refreshList();
         }
-
-        // FIXME Try to achieve this without jQuery
-        $body.off('mouseover', '.short-urls-list tbody tr');
-        $body.on('mouseover', '.short-urls-list tbody tr', function () {
-            $(this).find('.options').addClass('visible');
-        });
-        $body.off('mouseleave', '.short-urls-list tbody tr');
-        $body.on('mouseleave', '.short-urls-list tbody tr', function () {
-            var $options = $(this).find('.options');
-
-            $options.removeClass('visible');
-            if ($options.closest('.open').length > 0) {
-                $options.dropdown('toggle');
-            }
-        });
     }
 })();

@@ -28,7 +28,8 @@
             <tr ng-if="! vm.loading && vm.shortUrls.data.length == 0">
                 <td colspan="6" class="text-center">No results found</td>
             </tr>
-            <tr ng-repeat="shortUrl in vm.shortUrls.data">
+            <tr ng-repeat="shortUrl in vm.shortUrls.data"
+                ng-mouseover="shortUrl.hover = true" ng-mouseleave="shortUrl.hover = false">
                 <td class="nowrap" data-th="Created at: ">{{shortUrl.dateCreated | amDateFormat:'YYYY-MM-DD HH:mm'}}</td>
                 <td class="nowrap" data-th="Short URL: ">
                     <a target="_blank" ng-href="{{vm.currentServer.url}}/{{shortUrl.shortCode}}">
@@ -51,7 +52,8 @@
                 <td data-th="Visits: ">{{shortUrl.visitsCount}}</td>
                 <td>
                     <div class="btn-group">
-                        <button class="dropdown-toggle btn btn-default options" data-toggle="dropdown">
+                        <button class="dropdown-toggle btn btn-default options" data-toggle="dropdown"
+                                ng-class="{visible: shortUrl.hover}">
                             <i class="fa fa-ellipsis-v"></i>
                         </button>
                         <ul class="dropdown-menu options-dropdown">

@@ -3,13 +3,14 @@
 describe('ServerService', function () {
     var ServerService,
         localStorageService,
-        UuidGenerator;
+        UuidGenerator,
+        id = '3b5225f8-71bd-43d9-946d-c181928cb9f7';
 
     beforeEach(module('shlink'));
     beforeEach(module(function ($provide) {
         localStorageService = jasmine.createSpyObj('localStorageService', ['get', 'set']);
         UuidGenerator = jasmine.createSpyObj('UuidGenerator', ['generateV4Uuid']);
-        UuidGenerator.generateV4Uuid.and.returnValue('3b5225f8-71bd-43d9-946d-c181928cb9f7');
+        UuidGenerator.generateV4Uuid.and.returnValue(id);
 
         $provide.value('localStorageService', localStorageService);
         $provide.value('UuidGenerator', UuidGenerator);
@@ -20,11 +21,28 @@ describe('ServerService', function () {
 
     describe('ServerService.construct', function () {
         it('properly initializes service', function () {
-            expect(ServerService.createFromForm).toEqual(jasmine.any(Function));
+            expect(ServerService.create).toEqual(jasmine.any(Function));
             expect(ServerService.list).toEqual(jasmine.any(Function));
             expect(ServerService.getById).toEqual(jasmine.any(Function));
             expect(ServerService.deleteById).toEqual(jasmine.any(Function));
             expect(ServerService.getCurrent).toEqual(jasmine.any(Function));
+        });
+    });
+
+    describe('ServerService.create', function () {
+        it('saves provided server on local storage', function () {
+            var server = {
+                    name: 'foo'
+                },
+                expectedServer = {
+                    name: 'foo',
+                    id: id
+                },
+                servers = {};
+
+            servers[id] = expectedServer;
+            expect(ServerService.create(server)).toEqual(expectedServer);
+            expect(localStorageService.set).toHaveBeenCalledWith('servers', servers);
         });
     });
 

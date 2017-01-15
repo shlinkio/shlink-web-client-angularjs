@@ -14,19 +14,17 @@
     function CreateServerCtrl (ServerService, $state, $rootScope) {
         var vm = this;
 
+        vm.server = {};
         vm.saveNewServer = saveNewServer;
 
         function saveNewServer () {
-            var $form = $('#server-form'),
-                server = ServerService.createFromForm($form);
+            var server = ServerService.create(vm.server);
 
-            if ($form.length > 0) {
-                $form[0].reset();
-            }
             ServerService.setCurrent(server);
             $rootScope.$broadcast('refresh_servers');
 
             $state.go('server.list', {serverId: server.id});
+            vm.server = {};
         }
     }
 })();

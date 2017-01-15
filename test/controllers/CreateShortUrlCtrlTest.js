@@ -37,11 +37,11 @@ describe('CreateShortUrlCtrl', function () {
     });
 
     describe('CreateShortUrlCtrl.createShortCode', function () {
-        it('calls APiService.createShortUrl with provided long URL', function () {
+        it('calls ApiService.createShortUrl with provided long URL', function () {
             CreateShortUrlCtrl.url = 'the_long_url';
             CreateShortUrlCtrl.createShortCode();
 
-            expect(ApiService.createShortUrl).toHaveBeenCalledWith('the_long_url');
+            expect(ApiService.createShortUrl).toHaveBeenCalledWith('the_long_url', []);
             expect(CreateShortUrlCtrl.creating).toEqual(true);
         });
 

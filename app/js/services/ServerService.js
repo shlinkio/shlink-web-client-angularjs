@@ -12,7 +12,7 @@
 
     function ServerService (localStorageService, UuidGenerator) {
         return {
-            createFromForm: createFromForm,
+            create: create,
             list: list,
             getById: getById,
             deleteById: deleteById,
@@ -21,21 +21,11 @@
             setCurrent: setCurrent
         };
 
-        /**
-         *
-         * @param $form
-         * @returns {{id: string, name: *, url: *, apiKey: *}}
-         */
-        function createFromForm ($form) {
+        function create (newServer) {
             var servers = localStorageService.get('servers') || {},
-                id = UuidGenerator.generateV4Uuid(),
-                newServer = {
-                    id: id,
-                    name: $form.find('[name=name]').val(),
-                    url: $form.find('[name=url]').val(),
-                    apiKey: $form.find('[name=apiKey]').val()
-                };
+                id = UuidGenerator.generateV4Uuid();
 
+            newServer.id = id;
             servers[id] = newServer;
             localStorageService.set('servers', servers);
 

@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    shlink_client_nginx:
+        container_name: shlink_client_nginx
+        build:
+            context: .
+            dockerfile: ./infra/nginx.Dockerfile
+        ports:
+            - "8001:80"
+        volumes:
+            - ./:/home/shlink/www
+            - ./infra/vhost.conf:/etc/nginx/conf.d/shlink-client.conf
+
+    shlink_client_node:
+        container_name: shlink_client_node
+        build:
+            context: .
+            dockerfile: ./infra/node.Dockerfile
+        volumes:
+            - ./:/home/shlink/www

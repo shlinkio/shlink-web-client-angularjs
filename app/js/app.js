@@ -1,7 +1,15 @@
 'use strict';
 
 angular
-    .module('shlink', ['ui.router', 'LocalStorageModule', 'chart.js', 'angularMoment'])
+    .module('shlink', [
+        'ui.router',
+        'LocalStorageModule',
+        'chart.js',
+        'angularMoment',
+        'ngclipboard',
+        'smart-table',
+        'ngTagsInput'
+    ])
     .config([
         '$stateProvider',
         'localStorageServiceProvider',
@@ -54,7 +62,8 @@ angular
 
                 .state('server.short-code', {
                     url: '/short-code/{shortCode}',
-                    template: '<ui-view></ui-view>'
+                    template: '<ui-view></ui-view>',
+                    abstract: true
                 })
                 .state('server.short-code.visits', {
                     url: '/visits',
@@ -75,43 +84,33 @@ angular
         '$rootScope',
         'localStorageService',
         'ServerService',
-        '$timeout',
-        function ($rootScope, localStorageService, ServerService, $timeout) {
-            var clipboard = new Clipboard('.clipboard'),
-                copyTimer;
-            clipboard.on('success', function (e) {
-                $timeout.cancel(copyTimer);
-                $(e.trigger).tooltip({
-                    placement: 'bottom',
-                    title: 'Copied!',
-                    trigger: 'manual'
-                });
-                $(e.trigger).tooltip('show');
-                copyTimer = $timeout(function () {
-                    $(e.trigger).tooltip('hide');
-                }, 3000);
-            });
-
-            // After changing the state, scroll to top
+        function ($rootScope, localStorageService, ServerService) {
+            // After changing the state, scroll to top and hide top menu
             $rootScope.$on('$stateChangeSuccess', function () {
+                var $navbarToggle = $('.navbar-header .navbar-toggle');
+
                 $('html, body').scrollTop(0);
+                if (! $navbarToggle.hasClass('collapsed')) {
+                    $navbarToggle.click();
+                }
             });
 
             // Before changing the state, check the new server and set it as the default, un-setting the token in the
             // process
-            $rootScope.$on('$stateChangeStart', function (
-                event,
-                toState,
-                toParams /*,
-                fromState,
-                fromParams,
-                options */
-            ) {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
                 var serverId = toParams.serverId || null,
                     currentServer = ServerService.getCurrent();
 
                 if (serverId !== null && currentServer !== null && currentServer.id !== serverId) {
                     ServerService.setCurrent(serverId);
+                }
+            });
+
+            // After changing the state, if we come from the list state and not changing page, clear tableState
+            $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+                if (fromState.name === 'server.list' && toState.name !== 'server.list') {
+                    delete $rootScope.tableState;
+                    delete $rootScope.tableTag;
                 }
             });
         }

@@ -13,6 +13,31 @@ $brandColorDark: darken($brandColor, 7%);
     }
 }
 
-.clipboard {
+th[st-sort] {
     cursor: pointer;
+
+    &:before {
+        font-family: "FontAwesome";
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-size: 14px;
+        margin-right: 5px;
+        display: inline-block;
+        width: 12px;
+        vertical-align: baseline;
+    }
+
+    &.st-sort-ascent:before {
+        content: '\f0d8';
+    }
+    &.st-sort-descent:before {
+        content: '\f0d7';
+    }
+}
+
+.nowrap {
+    white-space: nowrap;
 }

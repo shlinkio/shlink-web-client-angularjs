@@ -14,6 +14,8 @@ module.exports = function (grunt) {
         'app/bower_components/fontawesome/css/font-awesome.min.css',
         'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
         'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        'app/bower_components/ng-tags-input/ng-tags-input.min.css',
+        'app/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css',
         cssFile
     ];
     jsUglifyTemplate[jsFile] = [
@@ -30,7 +32,8 @@ module.exports = function (grunt) {
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
         'app/js/controllers/CreateShortUrlCtrl.js',
-        'app/js/directives/modalImage.js'
+        'app/js/directives/modalImage.js',
+        'app/js/filters/color.js'
     ];
     jsConcatTemplate[jsFile] = [
         'app/bower_components/jquery/dist/jquery.min.js',
@@ -44,6 +47,9 @@ module.exports = function (grunt) {
         'app/bower_components/chart.js/dist/Chart.min.js',
         'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
         'app/bower_components/clipboard/dist/clipboard.min.js',
+        'app/bower_components/ngclipboard/dist/ngclipboard.min.js',
+        'app/bower_components/angular-smart-table/dist/smart-table.min.js',
+        'app/bower_components/ng-tags-input/ng-tags-input.min.js',
         jsFile
     ];
 
@@ -54,9 +60,11 @@ module.exports = function (grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         jshint: {
-            dashboard: {
+            main: {
                 src: [
                     'app/js/**/*.js',
+                    'test/**/*.js',
+                    '*.js',
                     '!app/js/**/*.min.js'
                 ],
                 options: {
@@ -82,7 +90,7 @@ module.exports = function (grunt) {
         sass: {
             main: {
                 options: {
-                    sourceMap: false
+                    sourceMap: true
                 },
                 files: cssFilesTemplate
             }
@@ -106,7 +114,7 @@ module.exports = function (grunt) {
         uglify: {
             options: {
                 compress: {
-                    drop_console: true
+                    'drop_console': true
                 }
             },
             main: {

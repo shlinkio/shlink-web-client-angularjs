@@ -17,6 +17,7 @@
         vm.creating = false;
         vm.shortUrl = '';
         vm.url = '';
+        vm.tags = [];
         vm.resp = {isError: false, isSuccess: false};
 
         vm.createShortCode = createShortCode;
@@ -24,7 +25,7 @@
 
         function createShortCode () {
             vm.creating = true;
-            ApiService.createShortUrl(vm.url).then(function (data) {
+            ApiService.createShortUrl(vm.url, processTags()).then(function (data) {
                 vm.creating = false;
                 vm.resp.isSuccess = true;
                 vm.resp.isError = false;
@@ -35,6 +36,16 @@
                 vm.resp.isError = true;
                 vm.resp.message = resp.data.message;
             });
+        }
+
+        function processTags () {
+            var tags = [];
+
+            angular.forEach(vm.tags, function (tag) {
+                tags.push(tag.text);
+            });
+
+            return tags;
         }
 
         function clipboardSuccess (e) {

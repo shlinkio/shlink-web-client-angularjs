@@ -51,8 +51,14 @@
             return performRequest('GET', '/rest/short-codes/' + shortCode + '/visits', undefined, params);
         }
 
-        function createShortUrl (url) {
-            return performRequest('POST', '/rest/short-codes', 'longUrl=' + url);
+        function createShortUrl (url, tags) {
+            var params = 'longUrl=' + url,
+                theTags = tags || [];
+            angular.forEach(theTags, function (tag) {
+                params += '&tags[]=' + tag;
+            });
+
+            return performRequest('POST', '/rest/short-codes', params);
         }
 
         function performRequest (method, url, data, params, originalDeferred) {

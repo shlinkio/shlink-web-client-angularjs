@@ -14,6 +14,8 @@ module.exports = function (grunt) {
         'app/bower_components/fontawesome/css/font-awesome.min.css',
         'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
         'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        'app/bower_components/ng-tags-input/ng-tags-input.min.css',
+        'app/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css',
         cssFile
     ];
     jsUglifyTemplate[jsFile] = [
@@ -47,6 +49,7 @@ module.exports = function (grunt) {
         'app/bower_components/clipboard/dist/clipboard.min.js',
         'app/bower_components/ngclipboard/dist/ngclipboard.min.js',
         'app/bower_components/angular-smart-table/dist/smart-table.min.js',
+        'app/bower_components/ng-tags-input/ng-tags-input.min.js',
         jsFile
     ];
 

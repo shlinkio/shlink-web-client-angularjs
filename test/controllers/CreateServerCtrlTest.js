@@ -14,7 +14,7 @@ describe('CreateServerCtrl', function () {
     }));
     beforeEach(function () {
         ServerService = {
-            createFromForm: function () {},
+            create: function () {},
             setCurrent: function () {}
         };
         $state = {
@@ -24,7 +24,7 @@ describe('CreateServerCtrl', function () {
             $broadcast: function () {}
         };
 
-        spyOn(ServerService, 'createFromForm').and.returnValue({id: 123});
+        spyOn(ServerService, 'create').and.returnValue({id: 123});
         spyOn(ServerService, 'setCurrent');
         spyOn($state, 'go');
         spyOn($rootScope, '$broadcast');
@@ -39,7 +39,7 @@ describe('CreateServerCtrl', function () {
     describe('CreateServerCtrl.saveNewServer', function () {
         it('tries to create a server', function () {
             CreateServerCtrl.saveNewServer();
-            expect(ServerService.createFromForm).toHaveBeenCalled();
+            expect(ServerService.create).toHaveBeenCalled();
             expect(ServerService.setCurrent).toHaveBeenCalledWith({id: 123});
         });
 

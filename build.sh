@@ -16,7 +16,6 @@ rm -rf dist/app/js/directives
 rm -rf dist/app/js/filters
 rm -rf dist/app/js/services
 rm -rf dist/app/js/app.js
-unlink dist/app/node_modules
 
 # Bundle app distributable
 rm -rf dist/shlink-web-client.zip

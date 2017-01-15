@@ -38,8 +38,7 @@
             });
         }
 
-        function listShortUrls (page) {
-            var params = typeof page !== 'undefined' && page !== null ? {page: page} : undefined;
+        function listShortUrls (params) {
             return performRequest('GET', '/rest/short-codes', undefined, params);
         }
 
@@ -52,8 +51,14 @@
             return performRequest('GET', '/rest/short-codes/' + shortCode + '/visits', undefined, params);
         }
 
-        function createShortUrl (url) {
-            return performRequest('POST', '/rest/short-codes', 'longUrl=' + url);
+        function createShortUrl (url, tags) {
+            var params = 'longUrl=' + url,
+                theTags = tags || [];
+            angular.forEach(theTags, function (tag) {
+                params += '&tags[]=' + tag;
+            });
+
+            return performRequest('POST', '/rest/short-codes', params);
         }
 
         function performRequest (method, url, data, params, originalDeferred) {
@@ -76,7 +81,8 @@
                         url: currentServer.url + url,
                         data: theData,
                         params: theParams,
-                        headers: headers
+                        headers: headers,
+                        paramSerializer: '$httpParamSerializerJQLike'
                     }).then(function (resp) {
                         // Override token
                         var newToken = resp.headers('Authorization');

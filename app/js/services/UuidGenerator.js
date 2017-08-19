@@ -4,14 +4,12 @@
 
     angular
         .module('shlink')
-        .factory('UuidGenerator', [
+        .service('UuidGenerator', [
             UuidGenerator
         ]);
 
     function UuidGenerator () {
-        return {
-            generateV4Uuid: generateV4Uuid
-        };
+        this.generateV4Uuid = generateV4Uuid;
 
         function generateV4Uuid () {
             function s4() {

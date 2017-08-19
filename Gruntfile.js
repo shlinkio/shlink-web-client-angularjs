@@ -11,11 +11,11 @@ module.exports = function (grunt) {
 
     cssFilesTemplate[cssFile] = 'app/sass/main.scss';
     cssMinFilesTemplate[cssFile] = [
-        'app/bower_components/fontawesome/css/font-awesome.min.css',
-        'app/bower_components/bootstrap/dist/css/bootstrap.min.css',
-        'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
-        'app/bower_components/ng-tags-input/ng-tags-input.min.css',
-        'app/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css',
+        'node_modules/font-awesome/css/font-awesome.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        'node_modules/ng-tags-input/build/ng-tags-input.min.css',
+        'node_modules/ng-tags-input/build/ng-tags-input.bootstrap.min.css',
         cssFile
     ];
     jsUglifyTemplate[jsFile] = [
@@ -23,33 +23,43 @@ module.exports = function (grunt) {
         'app/js/controllers/CreateServerCtrl.js',
         'app/js/services/ServerService.js',
         'app/js/services/UuidGenerator.js',
-        'app/js/directives/serversMenu.js',
+        'app/js/components/serversMenu.js',
         'app/js/services/ApiService.js',
         'app/js/controllers/ListShortUrlsCtrl.js',
         'app/js/filters/rangeFilter.js',
         'app/js/controllers/DeleteServerCtrl.js',
-        'app/js/directives/pagination.js',
+        'app/js/components/pagination.js',
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
         'app/js/controllers/CreateShortUrlCtrl.js',
-        'app/js/directives/modalImage.js',
-        'app/js/filters/color.js'
+        'app/js/filters/color.js',
+        'app/js/components/listShortUrlsSection.js',
+        'app/js/components/deleteServerSection.js',
+        'app/js/components/createServerSection.js',
+        'app/js/components/createShortCodeSection.js',
+        'app/js/components/visitsSection.js',
+        'app/js/components/modalImageToggle.js'
+    ];
+    jsUglifyTemplate['node_modules/angular-ui-bootstrap/dist/ui-bootstrap.min.js'] = [
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js'
     ];
     jsConcatTemplate[jsFile] = [
-        'app/bower_components/jquery/dist/jquery.min.js',
-        'app/bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'app/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js',
-        'app/bower_components/moment/min/moment.min.js',
-        'app/bower_components/angular/angular.min.js',
-        'app/bower_components/angular-ui-router/release/angular-ui-router.min.js',
-        'app/bower_components/angular-local-storage/dist/angular-local-storage.min.js',
-        'app/bower_components/angular-moment/angular-moment.min.js',
-        'app/bower_components/chart.js/dist/Chart.min.js',
-        'app/bower_components/angular-chart.js/dist/angular-chart.min.js',
-        'app/bower_components/clipboard/dist/clipboard.min.js',
-        'app/bower_components/ngclipboard/dist/ngclipboard.min.js',
-        'app/bower_components/angular-smart-table/dist/smart-table.min.js',
-        'app/bower_components/ng-tags-input/ng-tags-input.min.js',
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/bootstrap/dist/js/bootstrap.min.js',
+        'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+        'node_modules/moment/min/moment.min.js',
+        'node_modules/angular/angular.min.js',
+        'node_modules/@uirouter/angularjs/release/angular-ui-router.min.js',
+        'node_modules/@uirouter/angularjs/release/stateEvents.min.js',
+        'node_modules/angular-local-storage/dist/angular-local-storage.min.js',
+        'node_modules/angular-moment/angular-moment.min.js',
+        'node_modules/chart.js/dist/Chart.min.js',
+        'node_modules/angular-chart.js/dist/angular-chart.min.js',
+        'node_modules/clipboard/dist/clipboard.min.js',
+        'node_modules/ngclipboard/dist/ngclipboard.min.js',
+        'node_modules/angular-smart-table/dist/smart-table.min.js',
+        'node_modules/ng-tags-input/build/ng-tags-input.min.js',
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.min.js',
         jsFile
     ];
 
@@ -148,7 +158,7 @@ module.exports = function (grunt) {
             fontAwesomeFonts: {
                 files: [{
                     expand: true,
-                    cwd: 'app/bower_components/fontawesome/fonts/',
+                    cwd: 'node_modules/font-awesome/fonts/',
                     src: '**',
                     dest: 'app/fonts/'
                 }]

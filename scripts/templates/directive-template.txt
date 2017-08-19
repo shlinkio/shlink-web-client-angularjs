@@ -10,6 +10,7 @@
 
     function %directive% () {
         return {
+            restrict: 'A',
             templateUrl: '',
             link: function (scope, element) {
 

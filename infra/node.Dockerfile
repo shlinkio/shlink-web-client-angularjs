@@ -11,11 +11,8 @@ RUN curl -Ls https://github.com/fgrehm/docker-phantomjs2/releases/download/v2.0.
 
 # Install global tools
 RUN npm install -g grunt-cli
-RUN npm install -g bower
-RUN npm install -g bower-npm-resolver
 
 # Install project dependencies and run grunt watch at container startup
 CMD cd /home/shlink/www && \
     npm install && \
-    bower install --allow-root --force-latest && \
     grunt watch

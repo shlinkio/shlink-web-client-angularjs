@@ -4,22 +4,20 @@
 
     angular
         .module('shlink')
-        .factory('ServerService', [
+        .service('ServerService', [
             'localStorageService',
             'UuidGenerator',
             ServerService
         ]);
 
     function ServerService (localStorageService, UuidGenerator) {
-        return {
-            create: create,
-            list: list,
-            getById: getById,
-            deleteById: deleteById,
+        this.create = create;
+        this.list = list;
+        this.getById = getById;
+        this.deleteById = deleteById;
 
-            getCurrent: getCurrent,
-            setCurrent: setCurrent
-        };
+        this.getCurrent = getCurrent;
+        this.setCurrent = setCurrent;
 
         function create (newServer) {
             var servers = localStorageService.get('servers') || {},

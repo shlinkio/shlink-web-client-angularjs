@@ -10,6 +10,7 @@
 
     function pagination () {
         return {
+            restrict: 'E',
             templateUrl: '/templates/directives/pagination.html',
             scope: {
                 paginator: '='

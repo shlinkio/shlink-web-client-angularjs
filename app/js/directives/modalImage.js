@@ -10,6 +10,7 @@
 
     function modalImage () {
         return {
+            restrict: 'A',
             templateUrl: '/templates/directives/modalImage.html',
             controller: ['$scope', function ($scope) {
                 $scope.imagePath = '';

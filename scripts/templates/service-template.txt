@@ -4,13 +4,11 @@
 
     angular
         .module('%module%')
-        .factory('%service%', [
+        .service('%service%', [
             %service%
         ]);
 
     function %service% () {
-        return {
 
-        };
     }
 })();

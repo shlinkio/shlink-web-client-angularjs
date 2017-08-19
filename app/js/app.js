@@ -87,7 +87,8 @@ angular
         function ($rootScope, localStorageService, ServerService) {
             // After changing the state, scroll to top and hide top menu
             $rootScope.$on('$stateChangeSuccess', function () {
-                var $navbarToggle = $('.navbar-header .navbar-toggle');
+                var $ = angular.element,
+                    $navbarToggle = $('.navbar-header .navbar-toggle');
 
                 $('html, body').scrollTop(0);
                 if (! $navbarToggle.hasClass('collapsed')) {

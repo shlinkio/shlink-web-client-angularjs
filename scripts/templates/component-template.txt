@@ -8,12 +8,12 @@
             templateUrl: '',
             bindings: {},
             controller: [
-                %component%Ctrl
+                %componentCtrl%
             ],
             controllerAs: 'vm'
         });
 
-    function %component%Ctrl () {
+    function %componentCtrl% () {
         var vm = this;
 
 

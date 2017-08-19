@@ -32,7 +32,7 @@
                     this.imagePath = vm.imagePath;
                 },
                 controllerAs: 'vm'
-            });
+            }).result.then(angular.noop, angular.noop);
         }
     }
 })();

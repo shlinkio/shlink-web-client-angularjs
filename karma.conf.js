@@ -4,7 +4,7 @@ module.exports = function (config) {
         files: [
             'node_modules/jquery/dist/jquery.min.js',
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
-            'app/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js',
+            'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
             'node_modules/moment/min/moment.min.js',
             'node_modules/angular/angular.min.js',
             'node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -19,7 +19,7 @@ module.exports = function (config) {
             'app/js/**/*.js',
 
             // Load test files
-            'app/bower_components/angular-mocks/angular-mocks.js',
+            'node_modules/angular-mocks/angular-mocks.js',
             'test/**/*.js'
         ],
 

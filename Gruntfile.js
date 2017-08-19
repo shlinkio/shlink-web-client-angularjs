@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     cssMinFilesTemplate[cssFile] = [
         'node_modules/font-awesome/css/font-awesome.min.css',
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'app/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css',
+        'node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css',
         'node_modules/ng-tags-input/build/ng-tags-input.min.css',
         'node_modules/ng-tags-input/build/ng-tags-input.bootstrap.min.css',
         cssFile
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
     jsConcatTemplate[jsFile] = [
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
-        'app/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js',
+        'node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         'node_modules/moment/min/moment.min.js',
         'node_modules/angular/angular.min.js',
         'node_modules/angular-ui-router/release/angular-ui-router.min.js',
@@ -148,7 +148,7 @@ module.exports = function (grunt) {
             fontAwesomeFonts: {
                 files: [{
                     expand: true,
-                    cwd: 'app/bower_components/fontawesome/fonts/',
+                    cwd: 'node_modules/font-awesome/fonts/',
                     src: '**',
                     dest: 'app/fonts/'
                 }]

@@ -32,6 +32,7 @@
     "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^0.4.2",
     "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.7.1",
     "clipboard": "^1.7.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",

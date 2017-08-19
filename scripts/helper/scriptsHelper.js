@@ -31,11 +31,11 @@ var fs = require('fs'),
         for (var i in lines) {
             line = lines[i];
 
-            if (line.indexOf('build:js /js/main.min.js') > 0) {
+            if (line.indexOf('<!-- build:js /js/main.min.js') > 0) {
                 firstLineFound = true;
             }
 
-            if (firstLineFound && line.indexOf('/build') > 0) {
+            if (firstLineFound && line.indexOf('<!-- /build -->') > 0) {
                 lastLineFound = true;
                 firstLineFound = false;
             }

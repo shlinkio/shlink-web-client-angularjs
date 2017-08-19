@@ -30,9 +30,7 @@ angular
 
                 .state('create-server', {
                     url: '/server/create',
-                    controller: 'CreateServerCtrl',
-                    templateUrl: '/templates/server-create.html',
-                    controllerAs: 'vm'
+                    component: 'createServerPage'
                 })
 
                 .state('server', {

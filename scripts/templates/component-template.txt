@@ -1,0 +1,21 @@
+
+(function () {
+    'use strict';
+
+    angular
+        .module('%module%')
+        .component('%component%', {
+            templateUrl: '',
+            bindings: {},
+            controller: [
+                %componentCtrl%
+            ],
+            controllerAs: 'vm'
+        });
+
+    function %componentCtrl% () {
+        var vm = this;
+
+
+    }
+})();

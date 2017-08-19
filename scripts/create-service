@@ -1,72 +1,17 @@
-#!/usr/bin/env php
-<?php
-if (count($argv) < 2) {
-    echo 'Usage:' . PHP_EOL;
-    echo sprintf('    %s serviceName [moduleName]', $argv[0]) . PHP_EOL;
-    exit(PHP_EOL);
+#!/usr/bin/env node
+'use strict';
+
+var process = require('process'),
+    args = process.argv,
+    scriptsHelper = require('./helper/scriptsHelper');
+
+// Make sure the service name was provided
+if (args.length < 3) {
+    var parts = args[1].split('/');
+
+    console.log('Usage: ');
+    console.log('    %s serviceName [moduleName]', parts[parts.length - 1]);
+    process.exit(1);
 }
 
-$service = $argv[1];
-$module = $argv[2] ?? 'shlink';
-
-// Change current dir to project root
-$gitRoot = exec('GIT_EDITOR=echo git config -e');
-$parts = explode('/', $gitRoot);
-array_pop($parts);
-$gitRoot = implode('/', $parts);
-chdir($gitRoot . '/..');
-
-// Read service template
-$serviceTemplate = file_get_contents('scripts/templates/service-template.txt');
-$content = str_replace('%service%', $service, $serviceTemplate);
-$content = str_replace('%module%', $module, $content);
-
-// Create service file
-$serviceFile = sprintf('app/js/services/%s.js', $service);
-file_put_contents($serviceFile, $content);
-
-// Add service to index.html
-$lines = explode(PHP_EOL, file_get_contents('app/index.html'));
-$length = count($lines);
-$lastLines = [
-    $lines[$length - 4],
-    $lines[$length - 3],
-    $lines[$length - 2],
-    $lines[$length - 1],
-];
-foreach ($lines as $i => $line) {
-    if ($i === $length - 4) {
-        $lines[$i] = sprintf('        <script src="/js/services/%s.js"></script>', $service);
-    } elseif ($i > $length - 4) {
-        unset($lines[$i]);
-    }
-}
-$lines = array_merge($lines, $lastLines);
-file_put_contents('app/index.html', implode(PHP_EOL, $lines));
-
-// Add service to Gruntfile
-$gruntfileLines = explode(PHP_EOL, file_get_contents('Gruntfile.js'));
-$firstLineFound = false;
-$lastLineFound = false;
-$prev = [];
-$next = [];
-foreach ($gruntfileLines as $index => $line) {
-    if (strpos($line, 'jsUglifyTemplate[jsFile] = [') > 0) {
-        $firstLineFound = true;
-    }
-
-    if ($firstLineFound && strpos($line, '];') > 0) {
-        $lastLineFound = true;
-        $firstLineFound = false;
-        $prev[count($prev) - 1] = $prev[count($prev) - 1] . ',';
-    }
-
-    if ($lastLineFound) {
-        $next[] = $line;
-    } else {
-        $prev[] = $line;
-    }
-}
-
-$prev[] = sprintf('        \'app/js/services/%s.js\'', $service);
-file_put_contents('Gruntfile.js', implode(PHP_EOL, array_merge($prev, $next)));
+scriptsHelper.createAngularElement('service', args[2], args[3]);

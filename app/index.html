@@ -7,11 +7,11 @@
         <base href="/">
 
         <!-- build:css /css/main.min.css?v -->
-        <link rel="stylesheet" href="/bower_components/fontawesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/bower_components/bootstrap-3-datepicker/dist/css/bootstrap-datepicker3.min.css">
-        <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.min.css">
-        <link rel="stylesheet" href="/bower_components/ng-tags-input/ng-tags-input.bootstrap.min.css">
+        <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/node_modules/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" href="/node_modules/ng-tags-input/build/ng-tags-input.min.css">
+        <link rel="stylesheet" href="/node_modules/ng-tags-input/build/ng-tags-input.bootstrap.min.css">
         <link rel="stylesheet" href="/css/main.min.css">
         <!-- /build -->
     </head>
@@ -22,38 +22,43 @@
             <ui-view></ui-view>
         </div>
 
-        <div modal-image></div>
-
         <!-- build:js /js/main.min.js?v -->
-        <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="/bower_components/bootstrap-3-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-        <script src="/bower_components/moment/min/moment.min.js"></script>
-        <script src="/bower_components/angular/angular.min.js"></script>
-        <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-        <script src="/bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script>
-        <script src="/bower_components/angular-moment/angular-moment.min.js"></script>
-        <script src="/bower_components/chart.js/dist/Chart.min.js"></script>
-        <script src="/bower_components/angular-chart.js/dist/angular-chart.min.js"></script>
-        <script src="/bower_components/clipboard/dist/clipboard.min.js"></script>
-        <script src="/bower_components/ngclipboard/dist/ngclipboard.min.js"></script>
-        <script src="/bower_components/angular-smart-table/dist/smart-table.min.js"></script>
-        <script src="/bower_components/ng-tags-input/ng-tags-input.min.js"></script>
+        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+        <script src="/node_modules/moment/min/moment.min.js"></script>
+        <script src="/node_modules/angular/angular.min.js"></script>
+        <script src="/node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+        <script src="/node_modules/@uirouter/angularjs/release/stateEvents.min.js"></script>
+        <script src="/node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+        <script src="/node_modules/angular-moment/angular-moment.min.js"></script>
+        <script src="/node_modules/chart.js/dist/Chart.min.js"></script>
+        <script src="/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+        <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
+        <script src="/node_modules/ngclipboard/dist/ngclipboard.min.js"></script>
+        <script src="/node_modules/angular-smart-table/dist/smart-table.min.js"></script>
+        <script src="/node_modules/ng-tags-input/build/ng-tags-input.min.js"></script>
+        <script src="/node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script>
         <script src="/js/app.js"></script>
         <script src="/js/controllers/CreateServerCtrl.js"></script>
         <script src="/js/services/ServerService.js"></script>
         <script src="/js/services/UuidGenerator.js"></script>
-        <script src="/js/directives/serversMenu.js"></script>
+        <script src="/js/components/serversMenu.js"></script>
         <script src="/js/services/ApiService.js"></script>
         <script src="/js/controllers/ListShortUrlsCtrl.js"></script>
         <script src="/js/filters/rangeFilter.js"></script>
         <script src="/js/controllers/DeleteServerCtrl.js"></script>
-        <script src="/js/directives/pagination.js"></script>
+        <script src="/js/components/pagination.js"></script>
         <script src="/js/controllers/VisitsCtrl.js"></script>
         <script src="/js/services/StatsProcessor.js"></script>
         <script src="/js/controllers/CreateShortUrlCtrl.js"></script>
-        <script src="/js/directives/modalImage.js"></script>
         <script src="/js/filters/color.js"></script>
+        <script src="/js/components/listShortUrlsSection.js"></script>
+        <script src="/js/components/deleteServerSection.js"></script>
+        <script src="/js/components/createServerSection.js"></script>
+        <script src="/js/components/createShortCodeSection.js"></script>
+        <script src="/js/components/visitsSection.js"></script>
+        <script src="/js/components/modalImageToggle.js"></script>
         <!-- /build -->
     </body>
 </html>

@@ -64,20 +64,16 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#" ng-click="displayModalImage(
-                                    vm.currentServer.url + '/' + shortUrl.shortCode + '/preview',
-                                    'Preview for ' + shortUrl.shortCode
-                                )">
+                                <modal-image-toggle title="'Preview for ' + shortUrl.shortCode"
+                                                    image-path="vm.currentServer.url + '/' + shortUrl.shortCode + '/preview'">
                                     <i class="fa fa-image"></i>&nbsp;&nbsp;Preview
-                                </a>
+                                </modal-image-toggle>
                             </li>
                             <li>
-                                <a href="#" ng-click="displayModalImage(
-                                    vm.currentServer.url + '/' + shortUrl.shortCode + '/qr-code',
-                                    'QR code for ' + shortUrl.shortCode
-                                )">
+                                <modal-image-toggle title="'QR code for ' + shortUrl.shortCode"
+                                                    image-path="vm.currentServer.url + '/' + shortUrl.shortCode + '/qr-code'">
                                     <i class="fa fa-qrcode"></i>&nbsp;&nbsp;QR code
-                                </a>
+                                </modal-image-toggle>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -91,5 +87,5 @@
             </tr>
         </tbody>
     </table>
-    <div pagination data-paginator="vm.shortUrls.pagination" ng-if="vm.shortUrls.data.length > 0"></div>
+    <pagination paginator="vm.shortUrls.pagination" ng-if="vm.shortUrls.data.length > 0"></pagination>
 </div>

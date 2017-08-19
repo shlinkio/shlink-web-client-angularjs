@@ -5,13 +5,13 @@ var process = require('process'),
     args = process.argv,
     scriptsHelper = require('./helper/scriptsHelper');
 
-// Make sure the directive name was provided
+// Make sure the filter name was provided
 if (args.length < 3) {
     var parts = args[1].split('/');
 
     console.log('Usage: ');
-    console.log('    %s directiveName [moduleName]', parts[parts.length - 1]);
+    console.log('    %s filterName [moduleName]', parts[parts.length - 1]);
     process.exit(1);
 }
 
-scriptsHelper.createAngularElement('directive', args[2], args[3]);
+scriptsHelper.createAngularElement('filter', args[2], args[3]);

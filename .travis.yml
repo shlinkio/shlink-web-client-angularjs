@@ -12,11 +12,8 @@ node_js:
 
 before_install:
   - npm install -g grunt-cli
-  - npm install -g bower
-  - npm install -g bower-npm-resolver
 
 install:
   - npm install
-  - bower install
 
 script: grunt check

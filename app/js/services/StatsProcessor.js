@@ -4,17 +4,15 @@
 
     angular
         .module('shlink')
-        .factory('StatsProcessor', [
+        .service('StatsProcessor', [
             StatsProcessor
         ]);
 
     function StatsProcessor () {
-        return {
-            processOsStats: processOsStats,
-            processBrowserStats: processBrowserStats,
-            processReferrersStats: processReferrersStats,
-            processCountriesStats: processCountriesStats
-        };
+        this.processOsStats = processOsStats;
+        this.processBrowserStats = processBrowserStats;
+        this.processReferrersStats = processReferrersStats;
+        this.processCountriesStats = processCountriesStats;
 
         function processOsStats (visits) {
             return generateStatsResponse(function () {

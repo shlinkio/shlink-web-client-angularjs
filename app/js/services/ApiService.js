@@ -4,7 +4,7 @@
 
     angular
         .module('shlink')
-        .factory('ApiService', [
+        .service('ApiService', [
             'localStorageService',
             '$http',
             '$q',
@@ -12,13 +12,11 @@
         ]);
 
     function ApiService (localStorageService, $http, $q) {
-        return {
-            authenticate: authenticate,
-            listShortUrls: listShortUrls,
-            getShortUrl: getShortUrl,
-            getVisits: getVisits,
-            createShortUrl: createShortUrl
-        };
+        this.authenticate = authenticate;
+        this.listShortUrls = listShortUrls;
+        this.getShortUrl = getShortUrl;
+        this.getVisits = getVisits;
+        this.createShortUrl = createShortUrl;
 
         function authenticate () {
             var currentServer = localStorageService.get('current_server');

@@ -1,0 +1,16 @@
+
+(function () {
+    'use strict';
+
+    angular
+        .module('%module%')
+        .filter('%filter%', [
+            %filter%
+        ]);
+
+    function %filter% () {
+        return function (input) {
+            return input;
+        };
+    }
+})();

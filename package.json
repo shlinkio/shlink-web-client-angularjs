@@ -24,7 +24,25 @@
     "url": "https://github.com/shlinkio/shlink-web-client/issues"
   },
   "homepage": "https://shlink.io",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.6",
+    "angular": "^1.6.6",
+    "angular-chart.js": "^1.1.1",
+    "angular-local-storage": "^0.6.0",
+    "angular-moment": "^1.0.1",
+    "angular-smart-table": "^2.1.8",
+    "angular-ui-bootstrap": "^2.5.0",
+    "bootstrap": "^3.3.7",
+    "bootstrap-datepicker": "^1.7.1",
+    "clipboard": "^1.7.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "ng-tags-input": "^3.2.0",
+    "ngclipboard": "^1.1.1"
+  },
   "devDependencies": {
+    "angular-mocks": "^1.6.6",
+    "app-root-path": "^2.0.1",
     "grunt": "^1.0",
     "grunt-contrib-concat": "^1.0",
     "grunt-contrib-copy": "~1.0",
@@ -42,8 +60,5 @@
     "karma-coverage": "^1.1",
     "karma-jasmine": "^1.0",
     "karma-phantomjs-launcher": "^1.0"
-  },
-  "dependencies": {
-    "bower-npm-resolver": "^0.5"
   }
 }

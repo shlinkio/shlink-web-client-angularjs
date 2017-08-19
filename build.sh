@@ -8,13 +8,13 @@ grunt
 
 # Copy app directory and remove non-production stuff
 cp -r app dist
-rm -rf dist/app/bower_components
 rm -rf dist/app/sass
 rm -rf dist/app/css/.gitignore
 rm -rf dist/app/js/controllers
 rm -rf dist/app/js/directives
 rm -rf dist/app/js/filters
 rm -rf dist/app/js/services
+rm -rf dist/app/js/components
 rm -rf dist/app/js/app.js
 
 # Bundle app distributable

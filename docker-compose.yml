@@ -10,6 +10,7 @@ services:
             - "8001:80"
         volumes:
             - ./:/home/shlink/www
+            - ./node_modules:/home/shlink/www/app/node_modules
             - ./infra/vhost.conf:/etc/nginx/conf.d/shlink-client.conf
 
     shlink_client_node:

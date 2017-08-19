@@ -30,7 +30,7 @@ angular
 
                 .state('create-server', {
                     url: '/server/create',
-                    component: 'createServerPage'
+                    component: 'createServerSection'
                 })
 
                 .state('server', {
@@ -39,24 +39,18 @@ angular
                 })
                 .state('server.list', {
                     url: '/list-short-urls/{page:int}',
-                    controller: 'ListShortUrlsCtrl',
-                    templateUrl: '/templates/short-codes-list.html',
-                    controllerAs: 'vm',
+                    component: 'listShortUrlsSection',
                     params: {
                         page: 1
                     }
                 })
                 .state('server.delete', {
                     url: '/delete',
-                    templateUrl: '/templates/server-delete-confirm.html',
-                    controller: 'DeleteServerCtrl',
-                    controllerAs: 'vm'
+                    component: 'deleteServerSection'
                 })
                 .state('server.create', {
                     url: '/create-short-url',
-                    controller: 'CreateShortUrlCtrl',
-                    templateUrl: '/templates/short-codes-create.html',
-                    controllerAs: 'vm'
+                    component: 'createShortCodeSection'
                 })
 
                 .state('server.short-code', {
@@ -66,8 +60,7 @@ angular
                 })
                 .state('server.short-code.visits', {
                     url: '/visits',
-                    templateUrl: '/templates/short-codes-visits.html',
-                    controller: 'VisitsCtrl as vm',
+                    component: 'visitsSection',
                     params: {
                         shortUrl: null
                     }

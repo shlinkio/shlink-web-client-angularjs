@@ -34,7 +34,11 @@ module.exports = function (grunt) {
         'app/js/controllers/CreateShortUrlCtrl.js',
         'app/js/directives/modalImage.js',
         'app/js/filters/color.js',
-        'app/js/components/createServerPage.js'
+        'app/js/components/listShortUrlsSection.js',
+        'app/js/components/deleteServerSection.js',
+        'app/js/components/createServerSection.js',
+        'app/js/components/createShortCodeSection.js',
+        'app/js/components/visitsSection.js'
     ];
     jsConcatTemplate[jsFile] = [
         'node_modules/jquery/dist/jquery.min.js',

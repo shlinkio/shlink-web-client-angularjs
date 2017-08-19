@@ -4,17 +4,12 @@
 
     angular
         .module('shlink')
-        .directive('pagination', [
-            pagination
-        ]);
-
-    function pagination () {
-        return {
+        .component('pagination', {
             restrict: 'E',
             templateUrl: '/templates/directives/pagination.html',
-            scope: {
+            bindings: {
                 paginator: '='
-            }
-        };
-    }
+            },
+            controllerAs: 'vm'
+        });
 })();

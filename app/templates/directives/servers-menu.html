@@ -4,8 +4,8 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">Servers <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <li ng-repeat="server in servers"><a ui-sref="server.list({serverId: server.id})">{{server.name}}</a></li>
-                <li ng-if="serversLength == 0">
+                <li ng-repeat="server in vm.servers"><a ui-sref="server.list({serverId: server.id})">{{server.name}}</a></li>
+                <li ng-if="vm.serversLength == 0">
                     <a ui-sref="create-server"><i class="fa fa-plus"></i> Add server</a>
                 </li>
             </ul>

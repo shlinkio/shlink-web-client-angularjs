@@ -25,12 +25,12 @@
   },
   "homepage": "https://shlink.io",
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.6",
     "angular": "^1.6.6",
     "angular-chart.js": "^1.1.1",
     "angular-local-storage": "^0.6.0",
     "angular-moment": "^1.0.1",
     "angular-smart-table": "^2.1.8",
-    "angular-ui-router": "^0.4.2",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.7.1",
     "clipboard": "^1.7.1",

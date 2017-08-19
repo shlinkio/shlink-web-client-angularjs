@@ -3,6 +3,7 @@
 angular
     .module('shlink', [
         'ui.router',
+        'ui.router.state.events',
         'LocalStorageModule',
         'chart.js',
         'angularMoment',

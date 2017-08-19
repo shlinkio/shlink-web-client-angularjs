@@ -1,5 +1,15 @@
 ## CHANGELOG
 
+### 1.2.0
+
+**Tasks:**
+
+* [43: Convert factories into services](https://github.com/acelaya/url-shortener/issues/43)
+* [44: Convert component directives into components](https://github.com/acelaya/url-shortener/issues/44)
+* [47: Migrate to component ui-router](https://github.com/acelaya/url-shortener/issues/47)
+* [45: Do not use bower, and use npm only instead](https://github.com/acelaya/url-shortener/issues/45)
+* [48: Migrate helper scripts from PHP to node.js](https://github.com/acelaya/url-shortener/issues/48)
+
 ### 1.1.0
 
 **Enhancements:**

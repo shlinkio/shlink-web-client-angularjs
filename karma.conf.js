@@ -17,6 +17,7 @@ module.exports = function (config) {
             'node_modules/ngclipboard/dist/ngclipboard.min.js',
             'node_modules/angular-smart-table/dist/smart-table.min.js',
             'node_modules/ng-tags-input/build/ng-tags-input.min.js',
+            'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js',
             'app/js/**/*.js',
 
             // Load test files

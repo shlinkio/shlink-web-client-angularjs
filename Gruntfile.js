@@ -32,13 +32,16 @@ module.exports = function (grunt) {
         'app/js/controllers/VisitsCtrl.js',
         'app/js/services/StatsProcessor.js',
         'app/js/controllers/CreateShortUrlCtrl.js',
-        'app/js/directives/modalImage.js',
         'app/js/filters/color.js',
         'app/js/components/listShortUrlsSection.js',
         'app/js/components/deleteServerSection.js',
         'app/js/components/createServerSection.js',
         'app/js/components/createShortCodeSection.js',
-        'app/js/components/visitsSection.js'
+        'app/js/components/visitsSection.js',
+        'app/js/components/modalImageToggle.js'
+    ];
+    jsUglifyTemplate['node_modules/angular-ui-bootstrap/dist/ui-bootstrap.min.js'] = [
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js'
     ];
     jsConcatTemplate[jsFile] = [
         'node_modules/jquery/dist/jquery.min.js',
@@ -56,6 +59,7 @@ module.exports = function (grunt) {
         'node_modules/ngclipboard/dist/ngclipboard.min.js',
         'node_modules/angular-smart-table/dist/smart-table.min.js',
         'node_modules/ng-tags-input/build/ng-tags-input.min.js',
+        'node_modules/angular-ui-bootstrap/dist/ui-bootstrap.min.js',
         jsFile
     ];
 

@@ -31,6 +31,7 @@
     "angular-local-storage": "^0.6.0",
     "angular-moment": "^1.0.1",
     "angular-smart-table": "^2.1.8",
+    "angular-ui-bootstrap": "^2.5.0",
     "bootstrap": "^3.3.7",
     "bootstrap-datepicker": "^1.7.1",
     "clipboard": "^1.7.1",

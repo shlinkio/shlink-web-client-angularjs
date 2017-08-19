@@ -9,7 +9,8 @@ angular
         'angularMoment',
         'ngclipboard',
         'smart-table',
-        'ngTagsInput'
+        'ngTagsInput',
+        'ui.bootstrap'
     ])
     .config([
         '$stateProvider',
